@@ -51,7 +51,8 @@ class Scene_01(Scene_base):
         #-------- Environnement:
         cls.couleur_horizon=gs.Color(1.,.699,.586)
         cls.couleur_zenith=gs.Color(1.,0.978,0.407)
-        cls.couleur_ambiante=gs.Color(0.019,0.042,0.034)
+        cls.couleur_ambiante=gs.Color(0.19,0.42,0.34)
+        #cls.couleur_ambiante=gs.Color(0.5,0.5,0.5)
 
         #-------- Création de la scène:
         cls.scene3d=scene.new_scene()
@@ -81,7 +82,7 @@ class Scene_01(Scene_base):
         cls.environnement.SetFogColor(cls.couleur_horizon)
         cls.environnement.SetFogNear(1)
         cls.environnement.SetFogFar(100)
-        cls.environnement.SetAmbientIntensity(2.)
+        cls.environnement.SetAmbientIntensity(1)
         cls.environnement.SetAmbientColor(cls.couleur_ambiante)
 
         cls.camera=cls.scene3d.GetNode("Camera")
@@ -96,8 +97,8 @@ class Scene_01(Scene_base):
         cls.lumiere_soleil.light.SetShadow(gs.Light.Shadow_Map)    #Active les ombres portées
         cls.lumiere_soleil.light.SetShadowRange(100)
 
-        cls.lumiere_soleil.light.SetDiffuseIntensity(2.)
-        cls.lumiere_soleil.light.SetSpecularIntensity(2.)
+        cls.lumiere_soleil.light.SetDiffuseIntensity(1.)
+        cls.lumiere_soleil.light.SetSpecularIntensity(1.)
 
         orientation=gs.Vector3(54/180*pi,135/180*pi,0)
         cls.lumiere_clair_obscur.transform.SetRotation(orientation)

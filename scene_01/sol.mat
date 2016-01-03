@@ -1,6 +1,0 @@
-{
-	"Material": {
-		"Shader": "@core/surfaces/default.isl",
-		"MaterialValues": {}
-	}
-}
