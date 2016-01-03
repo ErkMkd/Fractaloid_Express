@@ -1,0 +1,1815 @@
+{
+	"Scene": {
+		"Components": {
+			"gs::core::Environment": {
+				"AmbientColor": {
+					"r": 0.4001,
+					"g": 0.4001,
+					"b": 0.4001
+				},
+				"FogColor": {
+					"r": 1.0,
+					"g": 1.0,
+					"b": 1.0
+				}
+			}
+		},
+		"Nodes": {
+			"Node": {
+				"Uid": 1,
+				"Name": "Tender",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -1.9938,
+							"y": 2.3095000000000005,
+							"z": -12.452300000000001
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Tender.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 2,
+				"Name": "attache_tender",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": -1.2047,
+							"z": 4.4931
+						},
+						"Rotation": {
+							"x": 0.0001,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/attache_tender.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 3,
+				"Name": "tender_bogie_1.001",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": -1.6291,
+							"z": -2.1969000000000005
+						},
+						"Rotation": {
+							"x": 0.0001,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/tender_bogie_1.001.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 4,
+				"Name": "freins_bogie.001",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.9123,
+							"y": -0.5678000000000001,
+							"z": 3.8221000000000004
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/freins_bogie.001.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 5,
+				"Name": "essieu_1.004",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": 0.3467,
+							"z": 3.8221000000000004
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": -1.5707,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu_1.004.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 6,
+				"Name": "essieu_1.003",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": -1.4823000000000002,
+							"z": 3.8221000000000004
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": -1.5707,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu_1.003.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 7,
+				"Name": "tender_bogie_1",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": -1.6291,
+							"z": 2.197
+						},
+						"Rotation": {
+							"x": 0.0001,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/tender_bogie_1.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 8,
+				"Name": "essieu_1.002",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": 2.9117,
+							"z": -0.5719000000000001
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 1.5708,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu_1.002.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 9,
+				"Name": "essieu_1.001",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": 4.7407,
+							"z": -0.5719000000000001
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 1.5708,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu_1.001.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 10,
+				"Name": "freins_bogie",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.9123,
+							"y": 3.8262,
+							"z": -0.5719000000000001
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": -2.9606000000000005,
+							"z": 2.9607
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/freins_bogie.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 11,
+				"Name": "Express",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -1.9938,
+							"y": 1.3923,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Express.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 12,
+				"Name": "deco_avant",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 1.6873,
+							"z": 6.7372000000000009
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/deco_avant.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 13,
+				"Name": "deco",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 1.6873,
+							"z": -4.1706
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/deco.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 14,
+				"Name": "attache_Express",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": -0.2876,
+							"z": -7.959300000000001
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/attache_Express.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 15,
+				"Name": "logo_demo",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 0.050300000000000007,
+							"z": 5.5259
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/logo_demo.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 16,
+				"Name": "garde-boue",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": -0.7079000000000001,
+							"z": 6.8001000000000009
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/garde-boue.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 17,
+				"Name": "cheminee",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 2.6547,
+							"z": 5.9778
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": -0.1963,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/cheminee.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 18,
+				"Name": "reservoir_2",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 2.8407,
+							"z": 0.0073
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/reservoir_2.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 19,
+				"Name": "chassis_bogie.002",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 0.050300000000000007,
+							"z": 5.7022
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/chassis_bogie.002.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 20,
+				"Name": "nez",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 1.6873,
+							"z": -0.12190000000000001
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/nez.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 21,
+				"Name": "porte_chaudiere",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 1.6873,
+							"z": 0.056
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/porte_chaudiere.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 22,
+				"Name": "chaudiere",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 1.6873,
+							"z": 0.056
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/chaudiere.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 23,
+				"Name": "plateforme",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 0.4883,
+							"z": -1.2767000000000002
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/plateforme.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 24,
+				"Name": "chassis_bogie",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": -0.7119000000000001,
+							"z": 5.7022
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/chassis_bogie.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 25,
+				"Name": "essieu6",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": -0.1983,
+							"z": -3.3599
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu6.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 26,
+				"Name": "essieu_1",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": -0.7079000000000001,
+							"z": 6.8001000000000009
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu_1.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 27,
+				"Name": "essieu_2",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": -0.7079000000000001,
+							"z": 4.640000000000001
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu_2.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 28,
+				"Name": "essieu_3",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": -0.1983,
+							"z": 2.9401
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu_3.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 29,
+				"Name": "essieu_4",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": -0.1983,
+							"z": 0.8400000000000001
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu_4.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 30,
+				"Name": "essieu_5",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": -0.1983,
+							"z": -1.2599
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu_5.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 31,
+				"Name": "essieu_7",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": -0.5429,
+							"z": -6.6599
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/essieu_7.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 32,
+				"Name": "cabine",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 1.6884000000000002,
+							"z": -6.5215000000000009
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/cabine.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 33,
+				"Name": "reservoirs_1",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -0.4374,
+							"y": 2.7378,
+							"z": 4.575
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/reservoirs_1.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 34,
+				"Name": "amortisseurs",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -0.8734000000000001,
+							"y": -0.22080000000000003,
+							"z": 8.5169
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/amortisseurs.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 35,
+				"Name": "caches_roues",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.7574000000000001,
+							"y": -0.1983,
+							"z": 2.9401
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/caches_roues.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 36,
+				"Name": "carters",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.4642000000000002,
+							"y": 2.3204000000000004,
+							"z": 6.1915000000000008
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/carters.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 37,
+				"Name": "huile",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2124000000000002,
+							"y": 0.6039,
+							"z": 0.8012
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/huile.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 38,
+				"Name": "piston_chambre",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.0757,
+							"y": 0.0611,
+							"z": 5.0827
+						},
+						"Rotation": {
+							"x": -1.5009000000000002,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/piston_chambre.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 39,
+				"Name": "chambre_tiroir",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.1428,
+							"y": 5.4455,
+							"z": 6.0236
+						},
+						"Rotation": {
+							"x": -1.5009000000000002,
+							"y": 0.0001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/chambre_tiroir.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 40,
+				"Name": "tige_de_tiroir",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.1428,
+							"y": 5.4924,
+							"z": 5.353000000000001
+						},
+						"Rotation": {
+							"x": 0.0699,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/tige_de_tiroir.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 41,
+				"Name": "rails_piston",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0001,
+							"y": 4.7617,
+							"z": 4.5452
+						},
+						"Rotation": {
+							"x": 0.0001,
+							"y": 0.0001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0001
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/rails_piston.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 42,
+				"Name": "bielle_levier_avance",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.2422,
+							"y": 5.695600000000001,
+							"z": 4.4759
+						},
+						"Rotation": {
+							"x": 0.0131,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_levier_avance.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 43,
+				"Name": "levier_avance",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.19870000000000002,
+							"y": 4.6264,
+							"z": 4.4634
+						},
+						"Rotation": {
+							"x": 0.0131,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/levier_avance.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 44,
+				"Name": "bielle_commande_levier_avance",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.138,
+							"y": 4.6829,
+							"z": 4.1644000000000009
+						},
+						"Rotation": {
+							"x": 0.18680000000000003,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_commande_levier_avance.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 45,
+				"Name": "bielle_commande_tiroir",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.15560000000000002,
+							"y": 5.4288,
+							"z": 4.4724
+						},
+						"Rotation": {
+							"x": 0.042800000000000008,
+							"y": 0.0001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_commande_tiroir.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 46,
+				"Name": "bielle_motrice",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 4.7809,
+							"z": 4.2179
+						},
+						"Rotation": {
+							"x": -0.1012,
+							"y": 0.0001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_motrice.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 47,
+				"Name": "levier_avance.001",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.19870000000000002,
+							"y": 5.949,
+							"z": 2.9102
+						},
+						"Rotation": {
+							"x": 0.035,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/levier_avance.001.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 48,
+				"Name": "coulisse_de_distribution",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.2157,
+							"y": 5.5086,
+							"z": 2.6081000000000005
+						},
+						"Rotation": {
+							"x": 0.0699,
+							"y": 0.0001,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/coulisse_de_distribution.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 49,
+				"Name": "attache_coulisse_distribution",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.2983,
+							"y": 5.5091,
+							"z": 2.6007000000000004
+						},
+						"Rotation": {
+							"x": 0.0699,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/attache_coulisse_distribution.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 50,
+				"Name": "attache_levier",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.1418,
+							"y": 5.6295,
+							"z": 2.206
+						},
+						"Rotation": {
+							"x": 0.0699,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/attache_levier.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 51,
+				"Name": "levier",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.13670000000000002,
+							"y": 5.9928,
+							"z": 2.3014
+						},
+						"Rotation": {
+							"x": 0.0699,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/levier.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 52,
+				"Name": "commnde_distribution",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.15560000000000002,
+							"y": 6.472,
+							"z": 2.3166
+						},
+						"Rotation": {
+							"x": 0.0699,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/commnde_distribution.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 53,
+				"Name": "bielle_commande_coulisse",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.1542,
+							"y": 4.9829,
+							"z": 2.1986
+						},
+						"Rotation": {
+							"x": -0.1396,
+							"y": 0.0001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_commande_coulisse.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 54,
+				"Name": "contre_manivelle",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.078,
+							"y": 4.469,
+							"z": 1.0934000000000002
+						},
+						"Rotation": {
+							"x": -0.5061,
+							"y": 0.0001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/contre_manivelle.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 55,
+				"Name": "bielle_accouplement",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -0.0897,
+							"y": 4.468100000000001,
+							"z": 1.0962
+						},
+						"Rotation": {
+							"x": 0.0699,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_accouplement.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 56,
+				"Name": "piston_bras",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 4.7809,
+							"z": 5.0298
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 2.2427,
+							"z": -2.2426
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/piston_bras.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 57,
+				"Name": "tuyaux_1",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -0.5972000000000001,
+							"y": 2.5780000000000005,
+							"z": 4.3162
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -0.7853
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/tuyaux_1.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 58,
+				"Name": "tuyaux_2",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.4375,
+							"y": 2.7378,
+							"z": 2.8599
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/tuyaux_2.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 59,
+				"Name": "tuyaux_3",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -0.6016,
+							"y": 2.5469,
+							"z": 0.14070000000000003
+						},
+						"Rotation": {
+							"x": -0.0,
+							"y": 0.0,
+							"z": -0.8115
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/tuyaux_3.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 60,
+				"Name": "clair obscur",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 41.2274,
+							"y": 23.8155,
+							"z": 31.253500000000004
+						},
+						"Rotation": {
+							"x": -0.7853,
+							"y": 2.3562000000000005,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Light": {
+						"Model": "Linear",
+						"ShadowRange": 0.0,
+						"DiffuseColor": {
+							"r": 0.42550000000000007,
+							"g": 0.7001000000000001,
+							"b": 1.0
+						},
+						"SpecularColor": {
+							"r": 0.42550000000000007,
+							"g": 0.7001000000000001,
+							"b": 1.0
+						},
+						"DiffuseIntensity": 1.03
+					}
+				}
+			},
+			"Node": {
+				"Uid": 61,
+				"Name": "toit",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 43.3699,
+							"y": 7.6572000000000008,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/toit.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 62,
+				"Name": "Cube.003",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 44.0,
+							"y": -0.9999,
+							"z": 50.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Cube.003.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 63,
+				"Name": "Cube.001",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 24.0,
+							"y": 0.0,
+							"z": -50.499900000000007
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Cube.001.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 64,
+				"Name": "Cube",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 24.0,
+							"y": 0.0,
+							"z": -50.499900000000007
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Cube.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 65,
+				"Name": "Cube.000",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -35.999900000000007,
+							"y": 5.800000000000001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Cube.000.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 66,
+				"Name": "Cube.008",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -35.999900000000007,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Cube.008.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 67,
+				"Name": "Cube.004",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -35.999900000000007,
+							"y": 5.800000000000001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Cube.004.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 68,
+				"Name": "Cylinder",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -35.999900000000007,
+							"y": 1.0,
+							"z": -44.999900000000007
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Cylinder.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 69,
+				"Name": "Cube.005",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 24.0,
+							"y": 0.9624,
+							"z": -44.999900000000007
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Cube.005.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 70,
+				"Name": "Plane",
+				"Components": {
+					"gs::core::Transform": {
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Plane.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 71,
+				"Name": "Cube.002",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -25.9999,
+							"y": 0.14500000000000003,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/Cube.002.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 72,
+				"Name": "soleil",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 36.5972,
+							"y": 27.590500000000004,
+							"z": 10.7613
+						},
+						"Rotation": {
+							"x": -0.7853,
+							"y": -0.7853,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Light": {
+						"Model": "Linear",
+						"ShadowRange": 0.0,
+						"DiffuseColor": {
+							"r": 0.8001,
+							"g": 0.8001,
+							"b": 0.8001
+						},
+						"SpecularColor": {
+							"r": 0.8001,
+							"g": 0.8001,
+							"b": 0.8001
+						}
+					}
+				}
+			},
+			"Node": {
+				"Uid": 73,
+				"Name": "Camera",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -6.759200000000001,
+							"y": 2.5183,
+							"z": 13.2637
+						},
+						"Rotation": {
+							"x": -0.0098,
+							"y": 0.9082,
+							"z": 0.0432
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Camera": {
+						"ZoomFactor": 1.5207000000000002,
+						"ZNear": 0.1,
+						"ZFar": 999.9999
+					}
+				}
+			}
+		},
+		"NodeHierarchy": {
+			"Link": {
+				"Node": 2,
+				"Parent": 1
+			},
+			"Link": {
+				"Node": 3,
+				"Parent": 1
+			},
+			"Link": {
+				"Node": 4,
+				"Parent": 3
+			},
+			"Link": {
+				"Node": 5,
+				"Parent": 3
+			},
+			"Link": {
+				"Node": 6,
+				"Parent": 3
+			},
+			"Link": {
+				"Node": 7,
+				"Parent": 1
+			},
+			"Link": {
+				"Node": 8,
+				"Parent": 7
+			},
+			"Link": {
+				"Node": 9,
+				"Parent": 7
+			},
+			"Link": {
+				"Node": 10,
+				"Parent": 7
+			},
+			"Link": {
+				"Node": 12,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 13,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 14,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 15,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 16,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 17,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 18,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 19,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 20,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 21,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 22,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 23,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 24,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 25,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 26,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 27,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 28,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 29,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 30,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 31,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 32,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 33,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 34,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 35,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 36,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 37,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 38,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 39,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 40,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 41,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 42,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 43,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 44,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 45,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 46,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 47,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 48,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 49,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 50,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 51,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 52,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 53,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 54,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 55,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 56,
+				"Parent": 38
+			},
+			"Link": {
+				"Node": 57,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 58,
+				"Parent": 11
+			},
+			"Link": {
+				"Node": 59,
+				"Parent": 11
+			}
+		},
+		"Skeletons": {},
+		"State": {}
+	}
+}
