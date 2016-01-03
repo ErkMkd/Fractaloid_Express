@@ -85,13 +85,13 @@
 					"gs::core::Transform": {
 						"Position": {
 							"x": 0.9123,
-							"y": -0.5678000000000001,
-							"z": 3.8221000000000004
+							"y": -1.625,
+							"z": -2.1969000000000005
 						},
 						"Rotation": {
-							"x": -1.5707,
-							"y": 3.1416,
-							"z": 3.1416
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
 						}
 					},
 					"gs::core::Object": {
@@ -106,13 +106,8 @@
 					"gs::core::Transform": {
 						"Position": {
 							"x": 0.7574000000000001,
-							"y": 0.3467,
-							"z": 3.8221000000000004
-						},
-						"Rotation": {
-							"x": -1.5707,
-							"y": -1.5707,
-							"z": 0.0
+							"y": -1.625,
+							"z": -1.2824
 						}
 					},
 					"gs::core::Object": {
@@ -127,13 +122,8 @@
 					"gs::core::Transform": {
 						"Position": {
 							"x": 0.7574000000000001,
-							"y": -1.4823000000000002,
-							"z": 3.8221000000000004
-						},
-						"Rotation": {
-							"x": -1.5707,
-							"y": -1.5707,
-							"z": 0.0
+							"y": -1.625,
+							"z": -3.1114
 						}
 					},
 					"gs::core::Object": {
@@ -164,18 +154,34 @@
 			},
 			"Node": {
 				"Uid": 8,
+				"Name": "freins_bogie",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.9123,
+							"y": -1.625,
+							"z": 2.1971000000000004
+						},
+						"Rotation": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/freins_bogie.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 9,
 				"Name": "essieu_1.002",
 				"Components": {
 					"gs::core::Transform": {
 						"Position": {
 							"x": 0.7574000000000001,
-							"y": 2.9117,
-							"z": -0.5719000000000001
-						},
-						"Rotation": {
-							"x": -1.5707,
-							"y": 1.5708,
-							"z": 3.1416
+							"y": -1.625,
+							"z": 1.2825
 						}
 					},
 					"gs::core::Object": {
@@ -184,44 +190,18 @@
 				}
 			},
 			"Node": {
-				"Uid": 9,
+				"Uid": 10,
 				"Name": "essieu_1.001",
 				"Components": {
 					"gs::core::Transform": {
 						"Position": {
 							"x": 0.7574000000000001,
-							"y": 4.7407,
-							"z": -0.5719000000000001
-						},
-						"Rotation": {
-							"x": -1.5707,
-							"y": 1.5708,
-							"z": 3.1416
+							"y": -1.625,
+							"z": 3.1115
 						}
 					},
 					"gs::core::Object": {
 						"Geometry": "scene_01/essieu_1.001.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 10,
-				"Name": "freins_bogie",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.9123,
-							"y": 3.8262,
-							"z": -0.5719000000000001
-						},
-						"Rotation": {
-							"x": -1.5707,
-							"y": -2.9606000000000005,
-							"z": 2.9607
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/freins_bogie.geo"
 					}
 				}
 			},
@@ -290,22 +270,6 @@
 			},
 			"Node": {
 				"Uid": 14,
-				"Name": "attache_Express",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.0,
-							"y": -0.2876,
-							"z": -7.959300000000001
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/attache_Express.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 15,
 				"Name": "logo_demo",
 				"Components": {
 					"gs::core::Transform": {
@@ -321,7 +285,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 16,
+				"Uid": 15,
 				"Name": "garde-boue",
 				"Components": {
 					"gs::core::Transform": {
@@ -342,7 +306,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 17,
+				"Uid": 16,
 				"Name": "cheminee",
 				"Components": {
 					"gs::core::Transform": {
@@ -368,7 +332,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 18,
+				"Uid": 17,
 				"Name": "reservoir_2",
 				"Components": {
 					"gs::core::Transform": {
@@ -384,7 +348,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 19,
+				"Uid": 18,
 				"Name": "chassis_bogie.002",
 				"Components": {
 					"gs::core::Transform": {
@@ -400,7 +364,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 20,
+				"Uid": 19,
 				"Name": "nez",
 				"Components": {
 					"gs::core::Transform": {
@@ -421,7 +385,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 21,
+				"Uid": 20,
 				"Name": "porte_chaudiere",
 				"Components": {
 					"gs::core::Transform": {
@@ -442,7 +406,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 22,
+				"Uid": 21,
 				"Name": "chaudiere",
 				"Components": {
 					"gs::core::Transform": {
@@ -463,7 +427,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 23,
+				"Uid": 22,
 				"Name": "plateforme",
 				"Components": {
 					"gs::core::Transform": {
@@ -479,7 +443,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 24,
+				"Uid": 23,
 				"Name": "chassis_bogie",
 				"Components": {
 					"gs::core::Transform": {
@@ -495,7 +459,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 25,
+				"Uid": 24,
 				"Name": "essieu6",
 				"Components": {
 					"gs::core::Transform": {
@@ -516,7 +480,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 26,
+				"Uid": 25,
 				"Name": "essieu_1",
 				"Components": {
 					"gs::core::Transform": {
@@ -537,7 +501,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 27,
+				"Uid": 26,
 				"Name": "essieu_2",
 				"Components": {
 					"gs::core::Transform": {
@@ -558,7 +522,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 28,
+				"Uid": 27,
 				"Name": "essieu_3",
 				"Components": {
 					"gs::core::Transform": {
@@ -579,7 +543,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 29,
+				"Uid": 28,
 				"Name": "essieu_4",
 				"Components": {
 					"gs::core::Transform": {
@@ -600,7 +564,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 30,
+				"Uid": 29,
 				"Name": "essieu_5",
 				"Components": {
 					"gs::core::Transform": {
@@ -621,7 +585,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 31,
+				"Uid": 30,
 				"Name": "essieu_7",
 				"Components": {
 					"gs::core::Transform": {
@@ -642,23 +606,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 32,
-				"Name": "cabine",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.0,
-							"y": 1.6884000000000002,
-							"z": -6.5215000000000009
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/cabine.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 33,
+				"Uid": 31,
 				"Name": "reservoirs_1",
 				"Components": {
 					"gs::core::Transform": {
@@ -679,28 +627,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 34,
-				"Name": "amortisseurs",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": -0.8734000000000001,
-							"y": -0.22080000000000003,
-							"z": 8.5169
-						},
-						"Rotation": {
-							"x": -1.5707,
-							"y": 3.1416,
-							"z": 3.1416
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/amortisseurs.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 35,
+				"Uid": 32,
 				"Name": "caches_roues",
 				"Components": {
 					"gs::core::Transform": {
@@ -721,7 +648,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 36,
+				"Uid": 33,
 				"Name": "carters",
 				"Components": {
 					"gs::core::Transform": {
@@ -737,7 +664,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 37,
+				"Uid": 34,
 				"Name": "huile",
 				"Components": {
 					"gs::core::Transform": {
@@ -753,436 +680,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 38,
-				"Name": "piston_chambre",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 1.0757,
-							"y": 0.0611,
-							"z": 5.0827
-						},
-						"Rotation": {
-							"x": -1.5009000000000002,
-							"y": 3.1416,
-							"z": 3.1416
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/piston_chambre.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 39,
-				"Name": "chambre_tiroir",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.1428,
-							"y": 5.4455,
-							"z": 6.0236
-						},
-						"Rotation": {
-							"x": -1.5009000000000002,
-							"y": 0.0001,
-							"z": 0.0
-						},
-						"Scale": {
-							"x": 1.0,
-							"y": 1.0,
-							"z": 1.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/chambre_tiroir.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 40,
-				"Name": "tige_de_tiroir",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.1428,
-							"y": 5.4924,
-							"z": 5.353000000000001
-						},
-						"Rotation": {
-							"x": 0.0699,
-							"y": 0.0001,
-							"z": 0.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/tige_de_tiroir.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 41,
-				"Name": "rails_piston",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.0001,
-							"y": 4.7617,
-							"z": 4.5452
-						},
-						"Rotation": {
-							"x": 0.0001,
-							"y": 0.0001,
-							"z": 0.0
-						},
-						"Scale": {
-							"x": 1.0,
-							"y": 1.0,
-							"z": 1.0001
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/rails_piston.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 42,
-				"Name": "bielle_levier_avance",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.2422,
-							"y": 5.695600000000001,
-							"z": 4.4759
-						},
-						"Rotation": {
-							"x": 0.0131,
-							"y": 0.0001,
-							"z": 0.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/bielle_levier_avance.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 43,
-				"Name": "levier_avance",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.19870000000000002,
-							"y": 4.6264,
-							"z": 4.4634
-						},
-						"Rotation": {
-							"x": 0.0131,
-							"y": 0.0001,
-							"z": 0.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/levier_avance.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 44,
-				"Name": "bielle_commande_levier_avance",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.138,
-							"y": 4.6829,
-							"z": 4.1644000000000009
-						},
-						"Rotation": {
-							"x": 0.18680000000000003,
-							"y": 0.0001,
-							"z": 0.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/bielle_commande_levier_avance.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 45,
-				"Name": "bielle_commande_tiroir",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.15560000000000002,
-							"y": 5.4288,
-							"z": 4.4724
-						},
-						"Rotation": {
-							"x": 0.042800000000000008,
-							"y": 0.0001,
-							"z": 0.0
-						},
-						"Scale": {
-							"x": 1.0,
-							"y": 1.0,
-							"z": 1.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/bielle_commande_tiroir.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 46,
-				"Name": "bielle_motrice",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.0,
-							"y": 4.7809,
-							"z": 4.2179
-						},
-						"Rotation": {
-							"x": -0.1012,
-							"y": 0.0001,
-							"z": 0.0
-						},
-						"Scale": {
-							"x": 1.0,
-							"y": 1.0,
-							"z": 1.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/bielle_motrice.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 47,
-				"Name": "levier_avance.001",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.19870000000000002,
-							"y": 5.949,
-							"z": 2.9102
-						},
-						"Rotation": {
-							"x": 0.035,
-							"y": 0.0001,
-							"z": 0.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/levier_avance.001.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 48,
-				"Name": "coulisse_de_distribution",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.2157,
-							"y": 5.5086,
-							"z": 2.6081000000000005
-						},
-						"Rotation": {
-							"x": 0.0699,
-							"y": 0.0001,
-							"z": -1.5707
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/coulisse_de_distribution.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 49,
-				"Name": "attache_coulisse_distribution",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.2983,
-							"y": 5.5091,
-							"z": 2.6007000000000004
-						},
-						"Rotation": {
-							"x": 0.0699,
-							"y": 0.0001,
-							"z": 0.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/attache_coulisse_distribution.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 50,
-				"Name": "attache_levier",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.1418,
-							"y": 5.6295,
-							"z": 2.206
-						},
-						"Rotation": {
-							"x": 0.0699,
-							"y": 0.0001,
-							"z": 0.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/attache_levier.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 51,
-				"Name": "levier",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.13670000000000002,
-							"y": 5.9928,
-							"z": 2.3014
-						},
-						"Rotation": {
-							"x": 0.0699,
-							"y": 0.0001,
-							"z": 0.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/levier.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 52,
-				"Name": "commnde_distribution",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.15560000000000002,
-							"y": 6.472,
-							"z": 2.3166
-						},
-						"Rotation": {
-							"x": 0.0699,
-							"y": 0.0001,
-							"z": 0.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/commnde_distribution.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 53,
-				"Name": "bielle_commande_coulisse",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.1542,
-							"y": 4.9829,
-							"z": 2.1986
-						},
-						"Rotation": {
-							"x": -0.1396,
-							"y": 0.0001,
-							"z": 0.0
-						},
-						"Scale": {
-							"x": 1.0,
-							"y": 1.0,
-							"z": 1.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/bielle_commande_coulisse.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 54,
-				"Name": "contre_manivelle",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.078,
-							"y": 4.469,
-							"z": 1.0934000000000002
-						},
-						"Rotation": {
-							"x": -0.5061,
-							"y": 0.0001,
-							"z": 0.0
-						},
-						"Scale": {
-							"x": 1.0,
-							"y": 1.0,
-							"z": 1.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/contre_manivelle.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 55,
-				"Name": "bielle_accouplement",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": -0.0897,
-							"y": 4.468100000000001,
-							"z": 1.0962
-						},
-						"Rotation": {
-							"x": 0.0699,
-							"y": 0.0001,
-							"z": 0.0
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/bielle_accouplement.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 56,
-				"Name": "piston_bras",
-				"Components": {
-					"gs::core::Transform": {
-						"Position": {
-							"x": 0.0,
-							"y": 4.7809,
-							"z": 5.0298
-						},
-						"Rotation": {
-							"x": -1.5707,
-							"y": 2.2427,
-							"z": -2.2426
-						}
-					},
-					"gs::core::Object": {
-						"Geometry": "scene_01/piston_bras.geo"
-					}
-				}
-			},
-			"Node": {
-				"Uid": 57,
+				"Uid": 35,
 				"Name": "tuyaux_1",
 				"Components": {
 					"gs::core::Transform": {
@@ -1208,7 +706,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 58,
+				"Uid": 36,
 				"Name": "tuyaux_2",
 				"Components": {
 					"gs::core::Transform": {
@@ -1229,7 +727,7 @@
 				}
 			},
 			"Node": {
-				"Uid": 59,
+				"Uid": 37,
 				"Name": "tuyaux_3",
 				"Components": {
 					"gs::core::Transform": {
@@ -1246,6 +744,468 @@
 					},
 					"gs::core::Object": {
 						"Geometry": "scene_01/tuyaux_3.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 38,
+				"Name": "amortisseurs",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": -0.8734000000000001,
+							"y": -0.22080000000000003,
+							"z": 8.5169
+						},
+						"Rotation": {
+							"x": -1.5707,
+							"y": 3.1416,
+							"z": 3.1416
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/amortisseurs.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 39,
+				"Name": "attache_Express",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": -0.2876,
+							"z": -7.959300000000001
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/attache_Express.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 40,
+				"Name": "piston_chambre",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.0757,
+							"y": 0.0611,
+							"z": 5.0827
+						},
+						"Rotation": {
+							"x": -0.0698,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/piston_chambre.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 41,
+				"Name": "rails_piston",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.0758,
+							"y": -0.0155,
+							"z": 4.263
+						},
+						"Rotation": {
+							"x": -0.0698,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/rails_piston.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 42,
+				"Name": "piston_bras",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.0757,
+							"y": 0.0375,
+							"z": 4.745
+						},
+						"Rotation": {
+							"x": -0.0698,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/piston_bras.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 43,
+				"Name": "levier_avance.001",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2744,
+							"y": 1.0549,
+							"z": 2.5491
+						},
+						"Rotation": {
+							"x": -0.0349,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/levier_avance.001.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 44,
+				"Name": "levier_avance",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2744,
+							"y": -0.1562,
+							"z": 4.1908
+						},
+						"Rotation": {
+							"x": -0.0567,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/levier_avance.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 45,
+				"Name": "levier",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2124000000000002,
+							"y": 1.0561,
+							"z": 1.9388
+						},
+						"Rotation": {
+							"x": 0.0001,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/levier.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 46,
+				"Name": "coulisse_de_distribution",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2914,
+							"y": 0.5945,
+							"z": 2.2785
+						},
+						"Rotation": {
+							"x": 0.0,
+							"y": 0.0001,
+							"z": -1.5707
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/coulisse_de_distribution.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 47,
+				"Name": "contre_manivelle",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.1537,
+							"y": -0.5483,
+							"z": 0.8400000000000001
+						},
+						"Rotation": {
+							"x": -0.5759000000000001,
+							"y": 0.0001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/contre_manivelle.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 48,
+				"Name": "commnde_distribution",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2313,
+							"y": 1.5352000000000002,
+							"z": 1.9206
+						},
+						"Rotation": {
+							"x": 0.0001,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/commnde_distribution.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 49,
+				"Name": "chambre_tiroir",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2185000000000002,
+							"y": 0.7698,
+							"z": 5.6901
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/chambre_tiroir.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 50,
+				"Name": "bielle_motrice",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.0757,
+							"y": -0.019200000000000003,
+							"z": 3.9352
+						},
+						"Rotation": {
+							"x": -0.171,
+							"y": 0.0001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_motrice.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 51,
+				"Name": "cabine",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.0,
+							"y": 1.6884000000000002,
+							"z": -6.5215000000000009
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/cabine.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 52,
+				"Name": "bielle_levier_avance",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.3179,
+							"y": 0.9113,
+							"z": 4.1287
+						},
+						"Rotation": {
+							"x": -0.0567,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_levier_avance.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 53,
+				"Name": "bielle_commande_tiroir",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2313,
+							"y": 0.6449,
+							"z": 4.143800000000001
+						},
+						"Rotation": {
+							"x": -0.027,
+							"y": 0.0001,
+							"z": 0.0
+						},
+						"Scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_commande_tiroir.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 54,
+				"Name": "bielle_commande_levier_avance",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2136,
+							"y": -0.1207,
+							"z": 3.8886000000000005
+						},
+						"Rotation": {
+							"x": 0.117,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_commande_levier_avance.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 55,
+				"Name": "bielle_commande_coulisse",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2299,
+							"y": 0.0415,
+							"z": 1.9066
+						},
+						"Rotation": {
+							"x": -0.2094,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_commande_coulisse.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 56,
+				"Name": "attache_levier",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2175,
+							"y": 0.6871,
+							"z": 1.8689
+						},
+						"Rotation": {
+							"x": 0.0001,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/attache_levier.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 57,
+				"Name": "bielle_accouplement",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 0.9859,
+							"y": -0.549,
+							"z": 0.8429000000000001
+						},
+						"Rotation": {
+							"x": 0.0001,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/bielle_accouplement.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 58,
+				"Name": "attache_coulisse_distribution",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.374,
+							"y": 0.5945,
+							"z": 2.2711
+						},
+						"Rotation": {
+							"x": 0.0001,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/attache_coulisse_distribution.geo"
+					}
+				}
+			},
+			"Node": {
+				"Uid": 59,
+				"Name": "tige_de_tiroir",
+				"Components": {
+					"gs::core::Transform": {
+						"Position": {
+							"x": 1.2185000000000002,
+							"y": 0.7698,
+							"z": 5.0178
+						},
+						"Rotation": {
+							"x": 0.0001,
+							"y": 0.0001,
+							"z": 0.0
+						}
+					},
+					"gs::core::Object": {
+						"Geometry": "scene_01/tige_de_tiroir.geo"
 					}
 				}
 			},
@@ -1478,7 +1438,7 @@
 			},
 			"Node": {
 				"Uid": 70,
-				"Name": "Plane",
+				"Name": "sol",
 				"Components": {
 					"gs::core::Transform": {
 						"Scale": {
@@ -1488,7 +1448,7 @@
 						}
 					},
 					"gs::core::Object": {
-						"Geometry": "scene_01/Plane.geo"
+						"Geometry": "scene_01/sol.geo"
 					}
 				}
 			},
@@ -1590,15 +1550,15 @@
 			},
 			"Link": {
 				"Node": 4,
-				"Parent": 3
+				"Parent": 1
 			},
 			"Link": {
 				"Node": 5,
-				"Parent": 3
+				"Parent": 1
 			},
 			"Link": {
 				"Node": 6,
-				"Parent": 3
+				"Parent": 1
 			},
 			"Link": {
 				"Node": 7,
@@ -1606,15 +1566,15 @@
 			},
 			"Link": {
 				"Node": 8,
-				"Parent": 7
+				"Parent": 1
 			},
 			"Link": {
 				"Node": 9,
-				"Parent": 7
+				"Parent": 1
 			},
 			"Link": {
 				"Node": 10,
-				"Parent": 7
+				"Parent": 1
 			},
 			"Link": {
 				"Node": 12,
@@ -1726,75 +1686,75 @@
 			},
 			"Link": {
 				"Node": 39,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 40,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 41,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 42,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 43,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 44,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 45,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 46,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 47,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 48,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 49,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 50,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 51,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 52,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 53,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 54,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 55,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 56,
-				"Parent": 38
+				"Parent": 11
 			},
 			"Link": {
 				"Node": 57,

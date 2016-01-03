@@ -7,6 +7,7 @@
 
 """
 
+#Voici la commande qui permet de transcrire la scène au format FBX vers le format utilisé par GameStart:
 #fbx_converter_bin.exe "d:/programmation/Fractaloid_Express/Modelisation/scene_01/Gare_test.fbx" -o "d:/programmation/Fractaloid_Express/scene_01" -base-resource-path "d:/programmation/Fractaloid_Express"
 
 import gs
@@ -77,10 +78,10 @@ class Scene_01(Scene_base):
         #----------- Init environnement:
 
         cls.environnement.SetBackgroundColor(cls.couleur_horizon)
-        cls.environnement.SetFogColor(cls.couleur_ambiante)
+        cls.environnement.SetFogColor(cls.couleur_horizon)
         cls.environnement.SetFogNear(1)
         cls.environnement.SetFogFar(100)
-        cls.environnement.SetAmbientIntensity(1.)
+        cls.environnement.SetAmbientIntensity(2.)
         cls.environnement.SetAmbientColor(cls.couleur_ambiante)
 
         cls.camera=cls.scene3d.GetNode("Camera")
@@ -95,11 +96,17 @@ class Scene_01(Scene_base):
         cls.lumiere_soleil.light.SetShadow(gs.Light.Shadow_Map)    #Active les ombres portées
         cls.lumiere_soleil.light.SetShadowRange(100)
 
+        cls.lumiere_soleil.light.SetDiffuseIntensity(2.)
+        cls.lumiere_soleil.light.SetSpecularIntensity(2.)
+
         orientation=gs.Vector3(54/180*pi,135/180*pi,0)
         cls.lumiere_clair_obscur.transform.SetRotation(orientation)
 
         orientation=gs.Vector3(54/180*pi,-45/180*pi,0)
         cls.lumiere_soleil.transform.SetRotation(orientation)
+
+        #cls.lumiere_clair_obscur.light.SetDiffuseIntensity(2.)
+        #cls.lumiere_clair_obscur.light.SetSpecularIntensity(2.)
 
 
 

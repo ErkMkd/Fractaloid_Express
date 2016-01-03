@@ -6,6 +6,7 @@ variant {
 	pixel {
 		source %{
 			%diffuse% = diffuse_color.xyz;
+			%specular% = vec3(0.5,0.5,0.5);
 		%}
 	}
 }
