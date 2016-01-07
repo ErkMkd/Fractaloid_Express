@@ -275,11 +275,11 @@ class BillBoard(SpriteTransform,SpriteFrame):
 
     #------- Convertion d'un noeud de scène en Billboard:
     def convertion_node(self,noeud):
-        mat=noeud.transform.GetWorld()
+        mat=noeud.GetTransform().GetWorld()
         position,echelle,rotation=mat.Decompose(gs.RotationOrder_Default)
         SpriteTransform.__init__(self,position.x,position.y,position.z,echelle.x,echelle.y,rotation.z,rotation.x,rotation.y)
 
-        self.geometrie=noeud.object.GetGeometry()
+        self.geometrie=noeud.GetObject().GetGeometry()
         self.materiau=self.geometrie.GetMaterial(0)
         self.texture=self.materiau.GetTexture("diffuse_map")
         self.largeur=self.texture.GetWidth()

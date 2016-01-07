@@ -54,7 +54,15 @@ class Scene_base:
     #liste_sprites_hors_scene=[]     #Les sprites hors scène (habillage visuel)
 
     #-------- Données pour le mini-éditeur embarqué, à supprimer après le dev:
-    drapeau_edition=False
+    EDIT_OFF=0
+    EDIT_SCENE=1
+    EDIT_FILTRES=2
+    NUM_PAGES_EDIT=2
+
+    edit_id=EDIT_SCENE
+
+    #---------
+
     fps=None    #Controle manuel de la caméra
     lumieres_intens_mem=[]
 
@@ -68,7 +76,7 @@ class Scene_base:
             nom=noeud.GetName()
             bb_chunk=nom[0]+nom[1]+nom[2]
             if bb_chunk=="bb.":
-                materiau=noeud.object.GetGeometry().GetMaterial(0)
+                materiau=noeud.GetObject().GetGeometry().GetMaterial(0)
                 texture=materiau.GetTexture("diffuse_map")
                 #shader=Demo.systeme.LoadSurfaceShader("shaders/sprite_alpha.isl",False)
                 materiau.SetSurfaceShader(Demo.shader_billboards)
@@ -81,8 +89,8 @@ class Scene_base:
     @classmethod
     def init_shaders(cls,noeuds):
         for noeud in noeuds:
-            if noeud.object is not None:
-                geo=noeud.object.GetGeometry()
+            if noeud.GetObject() is not None:
+                geo=noeud.GetObject().GetGeometry()
                 i=geo.GetMaterialCount()
                 n=0
                 while n<i:
@@ -144,7 +152,7 @@ class Scene_base:
     @classmethod
     def tri_sprites(cls,liste,camera):
         if len(liste)>0:
-            camPos = camera.transform.GetWorld().GetTranslation()
+            camPos = camera.GetTransform().GetWorld().GetTranslation()
             for sprite in liste:
                 sprPos=camPos-gs.Vector3(sprite.x,sprite.y,sprite.z)
                 sprite.distance_camera=sprPos.Len()
@@ -162,6 +170,11 @@ class Scene_base:
         for sprite in liste:
             sprite.affiche_geometrie()
             #print (str(sprite.distance_camera))
+
+    #Méthode où sont rendu les objets en raymarching, pour une fusion avec la scène 3d classique:
+    @classmethod
+    def affiche_rendu_shaders(cls):
+        raise NotImplementedError
 
     @classmethod
     def pre_scene(cls):
@@ -205,11 +218,15 @@ class Scene_base:
         :param point: gs.Vector3(x,y,z)
         :return: gs.Vector3(x_ecran,y_ecran,z=0)
         """
-        #drapeau,position=gs.Project(cls.camera.camera,cls.camera.transform,gs.Vector2(16/9,1),point)
-        drapeau,position=gs.Project(cls.camera.transform.GetWorld(),cls.camera.camera.GetZoomFactor(),Demo.rendu.GetAspectRatio(),point)
+        #drapeau,position=gs.Project(cls.camera.GetCamera(),cls.camera.GetTransform(),gs.Vector2(16/9,1),point)
+        drapeau,position=gs.Project(cls.camera.GetTransform().GetWorld(),cls.camera.GetCamera().GetZoomFactor(),Demo.rendu.GetAspectRatio(),point)
         return position
 
     @classmethod
     def edition(cls):
+        raise NotImplementedError
+
+    @classmethod
+    def edition_filtres(cls):
         raise NotImplementedError
 

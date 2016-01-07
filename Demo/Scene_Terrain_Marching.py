@@ -3,12 +3,12 @@
 """
     Fractaloid Express - Mankind - 2016
 
-    Scène 1 - La gare
+    Scène Terrain Marching - Où la loco file dans les montagnes.
 
 """
 
 #Voici la commande qui permet de transcrire la scène au format FBX vers le format utilisé par GameStart:
-#fbx_converter_bin.exe "d:/programmation/Fractaloid_Express/Modelisation/scene_01/Gare_test.fbx" -o "d:/programmation/Fractaloid_Express/scene_01" -base-resource-path "d:/programmation/Fractaloid_Express"
+#fbx_converter_bin.exe "d:/programmation/Fractaloid_Express/Modelisation/scene_terrain_marching/Terrain_marching.fbx" -o "d:/programmation/Fractaloid_Express/scene_terrain_marching" -base-resource-path "d:/programmation/Fractaloid_Express"
 
 import gs
 import gs.plus.render as render
@@ -21,14 +21,14 @@ from Demo.Demo import Demo as Demo
 from Demo.SceneBase import Scene_base as Scene_base
 
 
-class Scene_01(Scene_base):
+class Scene_Terrain_Marching(Scene_base):
 
-    lumiere_clair_obscur=None
+    lumiere_ciel=None
     lumiere_soleil=None
 
 
     # Données éditeur:
-    cube_l_clair_obscur=None
+    cube_l_ciel=None
     cube_l_soleil=None
 
     noeud_actuel=0
@@ -46,22 +46,23 @@ class Scene_01(Scene_base):
     #-------- Paramètres rendu shaders:
     drapeau_rendu_shaders=False  #True si la scène comporte des objets rendu via des shaders (raymarching)
 
+
     #--------------------------------------------------------------------------------------------------------------------------------------
 
     @classmethod
     def init(cls):
 
         #-------- Environnement:
-        cls.couleur_horizon=gs.Color(1.,.699,.586)
-        cls.couleur_zenith=gs.Color(1.,0.978,0.407)
-        cls.couleur_ambiante=gs.Color(0.19,0.42,0.34)
-        #cls.couleur_ambiante=gs.Color(0.5,0.5,0.5)
+        cls.couleur_horizon=gs.Color(10./255.,1./255.,5./255.)
+        cls.couleur_zenith=gs.Color(7./255.,12./255.,50./255.,1.)
+        #cls.couleur_ambiante=gs.Color(0.19,0.42,0.34)
+        cls.couleur_ambiante=gs.Color(0.5,0.5,0.5)
 
         #-------- Création de la scène:
         cls.scene3d=scene.new_scene()
 
         cls.contexte=gs.SceneLoadContext(render.get_render_system())
-        cls.scene3d.Load("scene_01/Gare_test.scn",cls.contexte)
+        cls.scene3d.Load("scene_terrain_marching/Terrain_Marching.scn",cls.contexte)
         #----------- Attend que la scène soit accessible:
         scene.update_scene(cls.scene3d,1/60)
 
@@ -83,18 +84,18 @@ class Scene_01(Scene_base):
 
         cls.environnement.SetBackgroundColor(cls.couleur_horizon)
         cls.environnement.SetFogColor(cls.couleur_horizon)
-        cls.environnement.SetFogNear(1)
-        cls.environnement.SetFogFar(100)
-        cls.environnement.SetAmbientIntensity(2)
+        cls.environnement.SetFogNear(100)
+        cls.environnement.SetFogFar(10000)
+        cls.environnement.SetAmbientIntensity(0.5)
         cls.environnement.SetAmbientColor(cls.couleur_ambiante)
 
         cls.camera=cls.scene3d.GetNode("Camera")
         cls.camera.GetCamera().SetZNear(.1)
-        cls.camera.GetCamera().SetZFar(1000.)
+        cls.camera.GetCamera().SetZFar(10000.)
         cls.camera_start_pos_mem=cls.camera.GetTransform().GetPosition()
         #cls.camera.AddComponent(gs.Target())   #Si la caméra suit une cible
 
-        cls.lumiere_clair_obscur=cls.scene3d.GetNode("clair obscur")
+        cls.lumiere_ciel=cls.scene3d.GetNode("clair obscur")
         cls.lumiere_soleil=cls.scene3d.GetNode("soleil")
 
         cls.lumiere_soleil.GetLight().SetShadow(gs.Light.Shadow_Map)    #Active les ombres portées
@@ -104,13 +105,13 @@ class Scene_01(Scene_base):
         cls.lumiere_soleil.GetLight().SetSpecularIntensity(1.)
 
         orientation=gs.Vector3(54/180*pi,135/180*pi,0)
-        cls.lumiere_clair_obscur.GetTransform().SetRotation(orientation)
+        cls.lumiere_ciel.GetTransform().SetRotation(orientation)
 
         orientation=gs.Vector3(54/180*pi,-45/180*pi,0)
         cls.lumiere_soleil.GetTransform().SetRotation(orientation)
 
-        #cls.lumiere_clair_obscur.GetLight().SetDiffuseIntensity(2.)
-        #cls.lumiere_clair_obscur.GetLight().SetSpecularIntensity(2.)
+        #cls.lumiere_ciel.GetLight().SetDiffuseIntensity(2.)
+        #cls.lumiere_ciel.GetLight().SetSpecularIntensity(2.)
 
 
 
@@ -142,7 +143,7 @@ class Scene_01(Scene_base):
 
         #--------- Inits de l'éditeur embarqué
         cls.cube_l_soleil=scene.add_cube(cls.scene3d,gs.Matrix4.Identity,0.5,0.5,2.)
-        cls.cube_l_clair_obscur=scene.add_cube(cls.scene3d,gs.Matrix4.Identity,0.5,0.5,2.)
+        cls.cube_l_ciel=scene.add_cube(cls.scene3d,gs.Matrix4.Identity,0.5,0.5,2.)
 
         cls.scene3d.SetCurrentCamera(cls.camera)
 
@@ -251,10 +252,6 @@ class Scene_01(Scene_base):
 
     #----------------------------------------------------------------------------------------------------------------------------------------------
 
-    @classmethod
-    def edition_filtres(cls):
-        maj_filtres()
-        affiche_parametres_filtres()
 
 
     @classmethod
@@ -296,7 +293,7 @@ class Scene_01(Scene_base):
         edit_noeud(noeuds[cls.noeud_actuel])
 
 
-        cls.cube_l_clair_obscur.GetTransform().SetPosition(cls.lumiere_clair_obscur.GetTransform().GetPosition())
-        cls.cube_l_clair_obscur.GetTransform().SetRotation(cls.lumiere_clair_obscur.GetTransform().GetRotation())
+        cls.cube_l_ciel.GetTransform().SetPosition(cls.lumiere_ciel.GetTransform().GetPosition())
+        cls.cube_l_ciel.GetTransform().SetRotation(cls.lumiere_ciel.GetTransform().GetRotation())
         cls.cube_l_soleil.GetTransform().SetPosition(cls.lumiere_soleil.GetTransform().GetPosition())
         cls.cube_l_soleil.GetTransform().SetRotation(cls.lumiere_soleil.GetTransform().GetRotation())

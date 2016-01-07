@@ -17,6 +17,17 @@ import gs.plus.input as input
 #======================================================================
 
 class Demo:
+
+    #--------- Constantes de gestion des framebuffer objects:
+    TAILLE_FBO_LO=1024 #Résolution des textures de rendu basse résolution (utilisées pour les filtres glow par exemple)
+    FBO_RENDU_1=0
+    FBO_RENDU_2=1
+    FBO_LOW_1=2
+    FBO_LOW_2=3
+    NUM_FBOS=4
+
+
+    #------------ Variables:
     temps=0
     delta_t=0
     numero_frame=0
@@ -52,18 +63,57 @@ class Demo:
     shader_transparent=None
 
     #--------- Post-rendu:
-    pr_shader=None #Le shader de traitement post-rendu
+    pr_shader_filtres_basiques=None #Le shader de base du traitement post-rendu sans aura
+    pr_shader_affiche_texture_2d=None #Simple affichage de texture, avec réglage de l'alpha.
+    pr_shader_affiche_2_textures_2d=None #Simple affichage de deux textures, avec réglage des alphas.
+    pr_shader_2_textures_filtres=None #Fusionne 2 textures et applique des filtres.
+
+    pr_shader_contraste=None    #Shaders pour le rendu des auras
+    pr_shader_flou_x=None
+    pr_shader_flou_y=None
+    pr_shader_filtre_HSV=None   #Shader final pour un réglage des couleurs.
+
     pr_indices=None
     pr_vertex_layout=None
     pr_vertex=None
-    pr_texture_rendu=None
-    pr_texture_rendu_depth=None
-    pr_fbo_rendu=None
 
-    pr_contraste=0.
-    pr_seuil_contraste=0.5
-    pr_Hue=1.9
-    pr_Saturation=1.
+    pr_fbo_rendu_1=None #FBO hi res pour rendu scènes.
+    pr_fbo_rendu_2=None
+
+    pr_texture_rendu_1=None
+    pr_texture_rendu_2=None
+
+    pr_texture_rendu_1_depth=None
+    pr_texture_rendu_2_depth=None
+
+    pr_fbo_low_1=None   #FBO basse résolution pour certains effets (glow)
+    pr_fbo_low_2=None
+
+    pr_texture_low_1=None
+    pr_texture_low_2=None
+
+    pr_fbos=[NUM_FBOS] #Table des FBO, c'est plus simple à gérer via les id définis plus haut.
+    pr_textures=[NUM_FBOS]
+    pr_textures_depth=[NUM_FBOS]
+
+    #----------- Paramètres filtres:
+
+    pr_taille_aura=20
+    pr_intensite_aura=1
+
+    pr_aura_contraste=3
+    pr_aura_seuil_contraste=0.75
+    pr_aura_hue=5
+    pr_aura_saturation=1
+    pr_aura_value=1.
+
+    pr_alpha_aura=0.5
+    pr_alpha_rendu=0.5
+
+    pr_Contraste=0
+    pr_Seuil_contraste=0.5
+    pr_Hue=0
+    pr_Saturation=1
     pr_Value=1.
 
     #------------ Affiche un message d'erreur à l'écran:
@@ -117,8 +167,17 @@ class Demo:
     #------------------------------------------------------
     @classmethod
     def init_post_rendu(cls):
-        #Init les shaders:
-        cls.pr_shader = cls.rendu.LoadShader("shaders/shader_2d_single_texture.isl")
+        #Init les shaders de post rendu:
+        cls.pr_shader_filtres_basiques = cls.rendu.LoadShader("shaders/filtre_basique.isl")
+        cls.pr_shader_affiche_texture_2d = cls.rendu.LoadShader("shaders/affiche_texture_2d.isl")
+        cls.pr_shader_affiche_2_textures_2d = cls.rendu.LoadShader("shaders/affiche_2_textures_2d.isl")
+        cls.pr_shader_2_textures_filtres = cls.rendu.LoadShader("shaders/2_textures_filtres.isl")
+
+        cls.pr_shader_contraste = cls.rendu.LoadShader("shaders/filtre_contraste.isl")
+        cls.pr_shader_flou_x = cls.rendu.LoadShader("shaders/flou_x.isl")
+        cls.pr_shader_flou_y = cls.rendu.LoadShader("shaders/flou_y.isl")
+        cls.pr_shader_filtre_HSV = cls.rendu.LoadShader("shaders/filtre_HSV.isl")
+
 
         # create primitive index buffer
         data = gs.BinaryBlob()
@@ -149,28 +208,58 @@ class Demo:
         cls.pr_vertex = cls.rendu.NewBuffer()
         cls.rendu.CreateBuffer(cls.pr_vertex, data, gs.GpuBuffer.Vertex)
 
-        # create the texture we will render to
+        # Création des textures de rendu:
         window_size = cls.rendu.GetDefaultOutputWindow().GetSize()
-        cls.pr_texture_rendu = cls.rendu.NewTexture()
-        cls.rendu.CreateTexture(cls.pr_texture_rendu, window_size.x, window_size.y,gs.GpuTexture.RGBA8,gs.GpuTexture.NoAA,gs.GpuTexture.UsageDefault,False)
-        cls.pr_texture_rendu_depth = cls.rendu.NewTexture()
-        cls.rendu.CreateTexture(cls.pr_texture_rendu_depth, window_size.x, window_size.y,gs.GpuTexture.Depth,gs.GpuTexture.NoAA,gs.GpuTexture.UsageDefault,False)
+        cls.pr_texture_rendu_1 = cls.rendu.NewTexture()
+        cls.rendu.CreateTexture(cls.pr_texture_rendu_1, window_size.x, window_size.y,gs.GpuTexture.RGBA8,gs.GpuTexture.NoAA,gs.GpuTexture.UsageDefault,False)
+        cls.pr_texture_rendu_1_depth = cls.rendu.NewTexture()
+        cls.rendu.CreateTexture(cls.pr_texture_rendu_1_depth, window_size.x, window_size.y,gs.GpuTexture.Depth,gs.GpuTexture.NoAA,gs.GpuTexture.UsageDefault,False)
 
-        # create and configure the frame buffer object to render to the texture
-        cls.pr_fbo_rendu = cls.rendu.NewRenderTarget()
-        cls.rendu.CreateRenderTarget(cls.pr_fbo_rendu)
-        cls.rendu.SetRenderTargetColorTexture(cls.pr_fbo_rendu, cls.pr_texture_rendu)
-        cls.rendu.SetRenderTargetDepthTexture(cls.pr_fbo_rendu, cls.pr_texture_rendu_depth)
+        cls.pr_texture_rendu_2 = cls.rendu.NewTexture()
+        cls.rendu.CreateTexture(cls.pr_texture_rendu_2, window_size.x, window_size.y,gs.GpuTexture.RGBA8,gs.GpuTexture.NoAA,gs.GpuTexture.UsageDefault,False)
+        cls.pr_texture_rendu_2_depth = cls.rendu.NewTexture()
+        cls.rendu.CreateTexture(cls.pr_texture_rendu_2_depth, window_size.x, window_size.y,gs.GpuTexture.Depth,gs.GpuTexture.NoAA,gs.GpuTexture.UsageDefault,False)
+
+        cls.pr_texture_low_1 = cls.rendu.NewTexture()
+        cls.rendu.CreateTexture(cls.pr_texture_low_1, cls.TAILLE_FBO_LO, cls.TAILLE_FBO_LO,gs.GpuTexture.RGBA8,gs.GpuTexture.NoAA,gs.GpuTexture.UsageDefault,False)
+        cls.pr_texture_low_2 = cls.rendu.NewTexture()
+        cls.rendu.CreateTexture(cls.pr_texture_low_2, cls.TAILLE_FBO_LO, cls.TAILLE_FBO_LO,gs.GpuTexture.RGBA8,gs.GpuTexture.NoAA,gs.GpuTexture.UsageDefault,False)
+
+
+        # Création des frameBuffer objects:
+        cls.pr_fbo_rendu_1 = cls.rendu.NewRenderTarget()
+        cls.rendu.CreateRenderTarget(cls.pr_fbo_rendu_1)
+        cls.rendu.SetRenderTargetColorTexture(cls.pr_fbo_rendu_1, cls.pr_texture_rendu_1)
+        cls.rendu.SetRenderTargetDepthTexture(cls.pr_fbo_rendu_1, cls.pr_texture_rendu_1_depth)
+
+        cls.pr_fbo_rendu_2 = cls.rendu.NewRenderTarget()
+        cls.rendu.CreateRenderTarget(cls.pr_fbo_rendu_2)
+        cls.rendu.SetRenderTargetColorTexture(cls.pr_fbo_rendu_2, cls.pr_texture_rendu_2)
+        cls.rendu.SetRenderTargetDepthTexture(cls.pr_fbo_rendu_2, cls.pr_texture_rendu_2_depth)
+
+        cls.pr_fbo_low_1 = cls.rendu.NewRenderTarget()
+        cls.rendu.CreateRenderTarget(cls.pr_fbo_low_1)
+        cls.rendu.SetRenderTargetColorTexture(cls.pr_fbo_low_1, cls.pr_texture_low_1)
+
+        cls.pr_fbo_low_2 = cls.rendu.NewRenderTarget()
+        cls.rendu.CreateRenderTarget(cls.pr_fbo_low_2)
+        cls.rendu.SetRenderTargetColorTexture(cls.pr_fbo_low_2, cls.pr_texture_low_2)
+
+        #Init les tables des fbo:
+        cls.pr_fbos=[cls.pr_fbo_rendu_1,cls.pr_fbo_rendu_2,cls.pr_fbo_low_1,cls.pr_fbo_low_2]
+        cls.pr_textures=[cls.pr_texture_rendu_1,cls.pr_texture_rendu_2,cls.pr_texture_low_1,cls.pr_texture_low_2]
+        cls.pr_textures_depth=[cls.pr_texture_rendu_1_depth,cls.pr_texture_rendu_2_depth,None,None]
 
 
     @classmethod
-    def affiche_texture_rendu(cls):
+    def affiche_texture_rendu_basique(cls,id_fbo=FBO_RENDU_1):
+        cls.rendu.SetRenderTarget(None)
         window_size = cls.rendu.GetDefaultOutputWindow().GetSize()
         cls.rendu.SetViewport(gs.fRect(0, 0, window_size.x, window_size.y))  # fit viewport to window dimensions
         cls.rendu.Clear(gs.Color.Black)  # red
 
-        cls.rendu.SetShader(Demo.pr_shader)
-        cls.rendu.SetShaderTexture("u_tex", Demo.pr_texture_rendu)
+        cls.rendu.SetShader(Demo.pr_shader_filtres_basiques)
+        cls.rendu.SetShaderTexture("u_tex", cls.pr_textures[id_fbo])
         #cls.rendu.SetShaderFloat("saturation", cls.pr_saturation_avec_seuil)
         cls.rendu.SetShaderFloat("contraste", cls.pr_contraste)
         cls.rendu.SetShaderFloat("seuil", cls.pr_seuil_contraste)
@@ -178,6 +267,75 @@ class Demo:
         cls.rendu.SetShaderFloat("S", cls.pr_Saturation)
         cls.rendu.SetShaderFloat("V", cls.pr_Value)
         gs.DrawBuffers(cls.rendu, 6, cls.pr_indices, cls.pr_vertex, cls.pr_vertex_layout)
+
+    @classmethod
+    def affiche_texture_rendu_aura(cls):
+
+        window_size = cls.rendu.GetDefaultOutputWindow().GetSize()
+        cls.rendu.EnableBlending(False)
+        #------ Contraste pour isoler les surfaces claires:
+        cls.rendu.SetRenderTarget(cls.pr_fbos[cls.FBO_LOW_1])
+        cls.rendu.SetViewport(gs.fRect(0, 0, cls.TAILLE_FBO_LO, cls.TAILLE_FBO_LO))  # fit viewport to window dimensions
+        cls.rendu.Clear(gs.Color.Black)  # red
+
+        """
+        cls.rendu.SetShader(Demo.pr_shader_contraste)
+        cls.rendu.SetShaderTexture("u_tex", cls.pr_textures[cls.FBO_RENDU_1])
+        cls.rendu.SetShaderFloat("contraste", cls.pr_contraste)
+        cls.rendu.SetShaderFloat("seuil", cls.pr_seuil_contraste)
+        cls.rendu.SetShaderFloat("saturation", cls.pr_saturation_contraste)
+        gs.DrawBuffers(cls.rendu, 6, cls.pr_indices, cls.pr_vertex, cls.pr_vertex_layout)
+        """
+
+        cls.rendu.SetShader(Demo.pr_shader_filtres_basiques)
+        cls.rendu.SetShaderTexture("u_tex", cls.pr_textures[cls.FBO_RENDU_1])
+        cls.rendu.SetShaderFloat("contraste", cls.pr_aura_contraste)
+        cls.rendu.SetShaderFloat("seuil", cls.pr_aura_seuil_contraste)
+        cls.rendu.SetShaderFloat("H", cls.pr_aura_hue)
+        cls.rendu.SetShaderFloat("S", cls.pr_aura_saturation)
+        cls.rendu.SetShaderFloat("V", cls.pr_aura_value)
+        gs.DrawBuffers(cls.rendu, 6, cls.pr_indices, cls.pr_vertex, cls.pr_vertex_layout)
+
+
+        #--------- Floutage X:
+        cls.rendu.SetRenderTarget(cls.pr_fbos[cls.FBO_LOW_2])
+        cls.rendu.SetShader(Demo.pr_shader_flou_x)
+        cls.rendu.SetShaderTexture("u_tex", cls.pr_textures[cls.FBO_LOW_1])
+        #cls.rendu.SetShaderFloat("saturation", cls.pr_saturation_avec_seuil)
+        cls.rendu.SetShaderInt("taille_flou", cls.pr_taille_aura)
+        cls.rendu.SetShaderFloat("saturation_flou", cls.pr_intensite_aura)
+        cls.rendu.SetShaderFloat("taille_texture", window_size.x)
+        gs.DrawBuffers(cls.rendu, 6, cls.pr_indices, cls.pr_vertex, cls.pr_vertex_layout)
+
+        #--------- Floutage Y:
+        cls.rendu.SetRenderTarget(cls.pr_fbos[cls.FBO_LOW_1])
+        cls.rendu.SetShader(Demo.pr_shader_flou_y)
+        cls.rendu.SetShaderTexture("u_tex", cls.pr_textures[cls.FBO_LOW_2])
+        #cls.rendu.SetShaderFloat("saturation", cls.pr_saturation_avec_seuil)
+        cls.rendu.SetShaderInt("taille_flou", cls.pr_taille_aura)
+        cls.rendu.SetShaderFloat("saturation_flou", cls.pr_intensite_aura)
+        cls.rendu.SetShaderFloat("taille_texture", window_size.y)
+        gs.DrawBuffers(cls.rendu, 6, cls.pr_indices, cls.pr_vertex, cls.pr_vertex_layout)
+
+
+        #--------- Superposition des textures et filtre final:
+
+        cls.rendu.SetRenderTarget(None)
+        cls.rendu.SetViewport(gs.fRect(0, 0, window_size.x, window_size.y))  # fit viewport to window dimensions
+        cls.rendu.Clear(gs.Color.Black)
+        cls.rendu.SetShader(Demo.pr_shader_2_textures_filtres)
+        cls.rendu.SetShaderTexture("u_tex1", cls.pr_textures[cls.FBO_RENDU_1])
+        cls.rendu.SetShaderTexture("u_tex2", cls.pr_textures[cls.FBO_LOW_1])
+        cls.rendu.SetShaderFloat("alpha_1", cls.pr_alpha_rendu)
+        cls.rendu.SetShaderFloat("alpha_2", cls.pr_alpha_aura)
+        cls.rendu.SetShaderFloat("contraste", cls.pr_Contraste)
+        cls.rendu.SetShaderFloat("seuil", cls.pr_Seuil_contraste)
+        cls.rendu.SetShaderFloat("H", cls.pr_Hue)
+        cls.rendu.SetShaderFloat("S", cls.pr_Saturation)
+        cls.rendu.SetShaderFloat("V", cls.pr_Value)
+        cls.rendu.EnableBlending(True)
+        gs.DrawBuffers(cls.rendu, 6, cls.pr_indices, cls.pr_vertex, cls.pr_vertex_layout)
+
 
     @classmethod
     def depart_demo(cls):
