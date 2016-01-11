@@ -44,8 +44,26 @@ class Scene_Terrain_Marching(Scene_base):
     liste_sprites_hors_scene=[]     #Les sprites hors scène (habillage visuel)
 
     #-------- Paramètres rendu shaders:
-    drapeau_rendu_shaders=False  #True si la scène comporte des objets rendu via des shaders (raymarching)
+    drapeau_rendu_shaders=True  #True si la scène comporte des objets rendu via des shaders (raymarching)
 
+    shader_terrain = None
+
+    texture_terrain1 = None
+    texture_terrain2 = None
+    texture_terrain3 = None
+
+    facteur_echelle_terrain_l1 = None
+    facteur_echelle_terrain_l2 = None
+    facteur_echelle_terrain_l3 = None
+    amplitude_l1=6000
+    amplitude_l2=90
+    amplitude_l3=1.5
+
+    facteur_precision_distance=1.01
+
+    couleur_neige=None
+    couleur_eau=None
+    altitude_eau=150
 
     #--------------------------------------------------------------------------------------------------------------------------------------
 
@@ -53,16 +71,17 @@ class Scene_Terrain_Marching(Scene_base):
     def init(cls):
 
         #-------- Environnement:
-        cls.couleur_horizon=gs.Color(10./255.,1./255.,5./255.)
-        cls.couleur_zenith=gs.Color(7./255.,12./255.,50./255.,1.)
-        #cls.couleur_ambiante=gs.Color(0.19,0.42,0.34)
-        cls.couleur_ambiante=gs.Color(0.5,0.5,0.5)
+        cls.couleur_horizon=gs.Color(10./255.,1./255.,5./255.,1.)
+        cls.couleur_zenith=gs.Color(70./255.,150./255.,255./255.,1.)
+        cls.couleur_ambiante=gs.Color(70./255.,150./255.,255./255.,1.)
+        #cls.couleur_ambiante=gs.Color(1,0,0,1)
 
         #-------- Création de la scène:
         cls.scene3d=scene.new_scene()
 
         cls.contexte=gs.SceneLoadContext(render.get_render_system())
-        cls.scene3d.Load("scene_terrain_marching/Terrain_Marching.scn",cls.contexte)
+        #cls.scene3d.Load("scene_terrain_marching/Terrain_Marching.scn",cls.contexte)
+        cls.scene3d.Load("scene_01/Gare_test.scn",cls.contexte)
         #----------- Attend que la scène soit accessible:
         scene.update_scene(cls.scene3d,1/60)
 
@@ -82,11 +101,11 @@ class Scene_Terrain_Marching(Scene_base):
 
         #----------- Init environnement:
 
-        cls.environnement.SetBackgroundColor(cls.couleur_horizon)
-        cls.environnement.SetFogColor(cls.couleur_horizon)
-        cls.environnement.SetFogNear(100)
-        cls.environnement.SetFogFar(10000)
-        cls.environnement.SetAmbientIntensity(0.5)
+        cls.environnement.SetBackgroundColor(gs.Color(0.,0.,0.,0))
+        cls.environnement.SetFogColor(cls.couleur_zenith)
+        cls.environnement.SetFogNear(10)
+        cls.environnement.SetFogFar(50)
+        cls.environnement.SetAmbientIntensity(.1)
         cls.environnement.SetAmbientColor(cls.couleur_ambiante)
 
         cls.camera=cls.scene3d.GetNode("Camera")
@@ -97,6 +116,8 @@ class Scene_Terrain_Marching(Scene_base):
 
         cls.lumiere_ciel=cls.scene3d.GetNode("clair obscur")
         cls.lumiere_soleil=cls.scene3d.GetNode("soleil")
+        cls.lumiere_ciel.GetLight().SetDiffuseColor(gs.Color(77./255.,158./255.,255./255.,1.))
+        cls.lumiere_soleil.GetLight().SetDiffuseColor(gs.Color(255./255.,250./255.,223./255.,1.))
 
         cls.lumiere_soleil.GetLight().SetShadow(gs.Light.Shadow_Map)    #Active les ombres portées
         cls.lumiere_soleil.GetLight().SetShadowRange(100)
@@ -149,6 +170,32 @@ class Scene_Terrain_Marching(Scene_base):
 
         scene.update_scene(cls.scene3d,1/60)
 
+        #------------- Filtres:
+        Demo.pr_alpha_rendu=0.75
+        Demo.pr_alpha_aura=0.5
+        Demo.pr_taille_aura=50
+        Demo.pr_aura_contraste=2
+        Demo.pr_aura_seuil_contraste=0.6
+
+        #-------------- Init le shader de rendu de terrain:
+        cls.shader_terrain=Demo.rendu.LoadShader("shaders_marching/terrain_marching_montagnes.isl")
+        cls.texture_terrain1=Demo.rendu.LoadTexture("textures/bruit_1024.png")
+        cls.texture_terrain2=Demo.rendu.LoadTexture("textures/bruit_512.png")
+        cls.texture_terrain3=Demo.rendu.LoadTexture("textures/bruit_512.png")
+
+        cls.facteur_echelle_terrain_l1 = gs.Vector2(20000,20000)
+        cls.facteur_echelle_terrain_l2 = gs.Vector2(1000,1000)
+        cls.facteur_echelle_terrain_l3 = gs.Vector2(90,90)
+
+        cls.amplitude_l1=6000
+        cls.amplitude_l2=90
+        cls.amplitude_l3=1.5
+
+        cls.facteur_precision_distance=1.01
+        cls.couleur_neige=gs.Color(0.91,0.91,1)
+        cls.couleur_eau=gs.Color(117./255.,219./255.,211./255.)
+        cls.altitude_eau=15
+
     #-------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -189,12 +236,14 @@ class Scene_Terrain_Marching(Scene_base):
         Demo.rendu.SetViewMatrix(gs.Matrix4.Identity)
 
         #Affiche le ciel:
-        Demo.rendu2d.Quad(-1, 0, 400., \
-                              -1, 1, 400., \
-                              1., 1, 400., \
-                              1., 0, 400., \
+        """
+        Demo.rendu2d.Quad(-1, 0, 4000., \
+                              -1, 1, 4000., \
+                              1., 1, 4000., \
+                              1., 0, 4000., \
                               -1, -1, 1, 1, None, cls.couleur_horizon, cls.couleur_zenith,
                               cls.couleur_zenith, cls.couleur_horizon)
+        """
 
     @classmethod
     def post_scene(cls):
@@ -222,6 +271,48 @@ class Scene_Terrain_Marching(Scene_base):
     #----------------------------------------------------------------------------------------------------------------------------------------------
     @classmethod
     def affiche_rendu_shaders(cls):
+        window_size=Demo.rendu.GetDefaultOutputWindow().GetSize()
+        Demo.rendu.SetViewport(gs.fRect(0, 0, window_size.x, window_size.y))  # fit viewport to window dimensions
+        Demo.rendu.Clear(gs.Color(0.,0.,0.,0.))
+        Demo.rendu.EnableBlending(False)
+        Demo.rendu.SetShader(cls.shader_terrain)
+        Demo.rendu.SetShaderTexture("texture_terrain", cls.texture_terrain1)
+        Demo.rendu.SetShaderTexture("texture_terrain2", cls.texture_terrain2)
+        Demo.rendu.SetShaderTexture("texture_terrain3", cls.texture_terrain3)
+        Demo.rendu.SetShaderFloat("ratio_ecran",window_size.y/window_size.x)
+        Demo.rendu.SetShaderFloat("distanceFocale",cls.camera.GetCamera().GetZoomFactor()/2.)
+        cam=cls.camera.GetTransform()
+        camPos=cam.GetPosition()
+        Demo.rendu.SetShaderFloat3("obs_pos",camPos.x,camPos.y,camPos.z)
+        #matr=cam.GetWorld().GetRotationMatrix()
+        #matr.Inverse()
+        Demo.rendu.SetShaderMatrix3("obs_mat_normale",cam.GetWorld().GetRotationMatrix())
+        Demo.rendu.SetShaderFloat2("facteur_echelle_terrain",cls.facteur_echelle_terrain_l1.x,cls.facteur_echelle_terrain_l1.y)
+        Demo.rendu.SetShaderFloat2("facteur_echelle_terrain2",cls.facteur_echelle_terrain_l2.x,cls.facteur_echelle_terrain_l2.y)
+        Demo.rendu.SetShaderFloat2("facteur_echelle_terrain3",cls.facteur_echelle_terrain_l3.x,cls.facteur_echelle_terrain_l3.y)
+        Demo.rendu.SetShaderFloat("amplitude_terrain",cls.amplitude_l1)
+        Demo.rendu.SetShaderFloat("amplitude_terrain2",cls.amplitude_l2)
+        Demo.rendu.SetShaderFloat("amplitude_terrain3",cls.amplitude_l3)
+        Demo.rendu.SetShaderFloat("facteur_precision_distance",cls.facteur_precision_distance)
+        Demo.rendu.SetShaderFloat("altitude_eau",cls.altitude_eau)
+        Demo.rendu.SetShaderFloat3("couleur_zenith",cls.couleur_zenith.r,cls.couleur_zenith.g,cls.couleur_zenith.b)
+        Demo.rendu.SetShaderFloat3("couleur_horizon",cls.couleur_horizon.r,cls.couleur_horizon.g,cls.couleur_horizon.b)
+        Demo.rendu.SetShaderFloat3("couleur_neige",cls.couleur_neige.r,cls.couleur_neige.g,cls.couleur_neige.b)
+        Demo.rendu.SetShaderFloat3("couleur_eau",cls.couleur_eau.r,cls.couleur_eau.g,cls.couleur_eau.b)
+
+        l_dir=cls.lumiere_soleil.GetTransform().GetWorld().GetRotationMatrix().GetZ()
+        Demo.rendu.SetShaderFloat3("l1_direction",l_dir.x,l_dir.y,l_dir.z)
+        l_couleur=cls.lumiere_soleil.GetLight().GetDiffuseColor()
+        Demo.rendu.SetShaderFloat3("l1_couleur",l_couleur.r,l_couleur.g,l_couleur.b)
+
+        l_dir=cls.lumiere_ciel.GetTransform().GetWorld().GetRotationMatrix().GetZ()
+        Demo.rendu.SetShaderFloat3("l2_direction",l_dir.x,l_dir.y,l_dir.z)
+        l_couleur=cls.lumiere_ciel.GetLight().GetDiffuseColor()
+        Demo.rendu.SetShaderFloat3("l2_couleur",l_couleur.r,l_couleur.g,l_couleur.b)
+
+        Demo.rendu.SetShaderFloat2("zFrustum",cls.camera.GetCamera().GetZNear(),cls.camera.GetCamera().GetZFar())
+
+        Demo.affiche_texture_rendu()
         pass
 
     #----------------------------------------------------------------------------------------------------------------------------------------------
@@ -252,6 +343,10 @@ class Scene_Terrain_Marching(Scene_base):
 
     #----------------------------------------------------------------------------------------------------------------------------------------------
 
+    @classmethod
+    def edition_filtres(cls):
+        maj_filtres()
+        affiche_parametres_filtres()
 
 
     @classmethod

@@ -7,7 +7,6 @@
 in {
 		tex2D u_tex; 
 
-		//Premier passage:
 		float H;
 		float S;
 		float V;

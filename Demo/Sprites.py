@@ -86,7 +86,7 @@ class SpriteFrame:
         self.texture=None
         self.largeur,self.hauteur=0,0
         if p_nomFichier!="":
-            self.texture=Aquagena.rendu.LoadTexture(self.nomFichier)
+            self.texture=Demo.rendu.LoadTexture(self.nomFichier)
             self.largeur=float(self.texture.GetWidth())
             self.hauteur=float(self.texture.GetHeight())
         self.cx,self.cy=cx,cy
@@ -112,7 +112,7 @@ class SpriteFrame:
         p3=SpriteMaths.calcul_point_plan_projection(x,y,z,xs-cx,ys-cy,axe_x,axe_y)
         p4=SpriteMaths.calcul_point_plan_projection(x,y,z,xs-cx,-cy,axe_x,axe_y)
 
-        Aquagena.rendu2d.Quad(p1.x,p1.y,p1.z, \
+        Demo.rendu2d.Quad(p1.x,p1.y,p1.z, \
                               p2.x,p2.y,p2.z, \
                               p3.x,p3.y,p3.z, \
                               p4.x,p4.y,p4.z, \
@@ -131,13 +131,13 @@ class SpriteFrame:
         p4=SpriteMaths.calcul_point_plan_projection(x,y,z,xs-cx,-cy,axe_x,axe_y)
 
         """
-        Aquagena.rendu2d.Quad(self.xPos-cx,self.yPos-cy,z, \
+        Demo.rendu2d.Quad(self.xPos-cx,self.yPos-cy,z, \
                               self.xPos-cx,self.yPos+ys-cy,z, \
                               self.xPos+xs-cx,self.yPos+ys-cy,z, \
                               self.xPos+xs-cx,self.yPos-cy,z, \
                               1,0, 0,1,self.frames[indice].texture,teinte,teinte,teinte,teinte)
         """
-        Aquagena.rendu2d.Quad(p1.x,p1.y,p1.z, \
+        Demo.rendu2d.Quad(p1.x,p1.y,p1.z, \
                               p2.x,p2.y,p2.z, \
                               p3.x,p3.y,p3.z, \
                               p4.x,p4.y,p4.z, \
@@ -150,22 +150,22 @@ class SpriteFrame:
         c.a=alpha
         debord=1.5
         xs=self.largeur*ex*debord/2
-        Aquagena.rendu2d.Quad(x-xs,y_sol,z-largeur_ombre/2, \
+        Demo.rendu2d.Quad(x-xs,y_sol,z-largeur_ombre/2, \
                               x-xs,y_sol,z+largeur_ombre/2, \
                               x+xs,y_sol,z+largeur_ombre/2, \
                               x+xs,y_sol,z-largeur_ombre/2, \
-                              0,0, 1,1,Aquagena.texture_ombre_sol,c,c,c,c)
+                              0,0, 1,1,Demo.texture_ombre_sol,c,c,c,c)
 
     def affiche_ombre_sol_inverse_X(self,x,z,ex,y_sol=0.,largeur_ombre=1.,alpha=1.):
         c=gs.Color.White
         c.a=alpha
         debord=1.5
         xs=self.largeur*ex*debord/2
-        Aquagena.rendu2d.Quad(x-xs,y_sol,z-largeur_ombre/2, \
+        Demo.rendu2d.Quad(x-xs,y_sol,z-largeur_ombre/2, \
                               x-xs,y_sol,z+largeur_ombre/2, \
                               x+xs,y_sol,z+largeur_ombre/2, \
                               x+xs,y_sol,z-largeur_ombre/2, \
-                              0,0, 1,1,Aquagena.texture_ombre_sol,c,c,c,c)
+                              0,0, 1,1,Demo.texture_ombre_sol,c,c,c,c)
 
     #--------- Crée l'objet RenderGeometry qui va servir à afficher le sprite.
 
@@ -206,13 +206,13 @@ class SpriteFrame:
 
         #---- Matériau:
 
-        self.texture=Aquagena.rendu.LoadTexture(self.nomFichier)
+        self.texture=Demo.rendu.LoadTexture(self.nomFichier)
         self.core_material=gs.CoreMaterial()
         self.core_material.SetShader("shaders/sprite_alpha.isl")
         self.core_material.AddValue("diffuse_map",gs.ShaderTexture2D)
-        self.materiau=Aquagena.systeme.CreateMaterial(self.core_material,False)
+        self.materiau=Demo.systeme.CreateMaterial(self.core_material,False)
         self.materiau.SetTexture("diffuse_map",self.texture)
-        self.geometrie=Aquagena.systeme.CreateGeometry(self.core_geometrie,False)
+        self.geometrie=Demo.systeme.CreateGeometry(self.core_geometrie,False)
         self.geometrie.SetMaterial(0,self.materiau)
 
         print ("...OK")
@@ -226,7 +226,7 @@ class SpriteFrame:
         mat.SetScale(gs.Vector3(ex,ey,1))
         materiau=self.geometrie.GetMaterial(0)
         materiau.SetFloat4("teinte",teinte.r,teinte.g,teinte.b,teinte.a)
-        Aquagena.rendu_scene.DrawGeometry(self.geometrie,mat)
+        Demo.rendu_scene.DrawGeometry(self.geometrie,mat)
 
 
     def affiche_geometrie_inverse_X(self,x,y,z,ex,ey,axe_x,axe_y,axe_z,teinte):
@@ -237,7 +237,7 @@ class SpriteFrame:
         mat.SetScale(gs.Vector3(ex,ey,1))
         materiau=self.geometrie.GetMaterial(0)
         materiau.SetFloat4("teinte",teinte.r,teinte.g,teinte.b,teinte.a)
-        Aquagena.rendu_scene.DrawGeometry(self.geometrie,mat)
+        Demo.rendu_scene.DrawGeometry(self.geometrie,mat)
 
     def affiche_geometrie_ombre_sol(self,x,z,ex,y_sol=0.,largeur_ombre=1.,alpha=1.):
         pass
@@ -297,7 +297,7 @@ class BillBoard(SpriteTransform,SpriteFrame):
         mat.SetScale(gs.Vector3(self.ex,self.ey,1))
         materiau=self.geometrie.GetMaterial(0)
         materiau.SetFloat4("teinte",self.teinte.r,self.teinte.g,self.teinte.b,self.teinte.a)
-        Aquagena.rendu_scene.DrawGeometry(self.geometrie,mat)
+        Demo.rendu_scene.DrawGeometry(self.geometrie,mat)
 
 #-----------------------------------------------------------------------------------
 # Séquence d'animation:
