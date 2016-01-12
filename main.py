@@ -154,15 +154,13 @@ while render.has_output_window() and not input.key_down(gs.InputDevice.KeyEscape
 
     if input.key_press(gs.InputDevice.KeyF12):
         Demo.Scene_actuelle.edit_id+=1
-        if Demo.Scene_actuelle.edit_id>Scene_base.NUM_PAGES_EDIT: Demo.Scene_actuelle.edit_id=0
+        if Demo.Scene_actuelle.edit_id>Demo.Scene_actuelle.NUM_PAGES_EDIT: Demo.Scene_actuelle.edit_id=0
 
     if Demo.Scene_actuelle.edit_id!=Scene_base.EDIT_OFF: Demo.drapeau_camera_controle_utilisateur=False
     else: Demo.drapeau_camera_controle_utilisateur=True
 
-    if Demo.Scene_actuelle.edit_id==Scene_base.EDIT_SCENE:
+    if Demo.Scene_actuelle.edit_id!=Scene_base.EDIT_OFF:
         Demo.Scene_actuelle.edition()
-    elif Demo.Scene_actuelle.edit_id==Scene_base.EDIT_FILTRES:
-        Demo.Scene_actuelle.edition_filtres()
 
     # --- Message système:
     if Demo.drapeau_erreur:

@@ -428,35 +428,35 @@ def maj_filtres():
             if Demo.pr_alpha_rendu<0:
                 Demo.pr_alpha_rendu=0
 
-        elif input.key_down(gs.InputDevice.KeyNumpad1):
-                Demo.pr_Contraste+=0.1
         elif input.key_down(gs.InputDevice.KeyNumpad2):
+                Demo.pr_Contraste+=0.1
+        elif input.key_down(gs.InputDevice.KeyNumpad1):
             Demo.pr_Contraste-=0.1
             if Demo.pr_Contraste<0:
                 Demo.pr_Contraste=0
 
-        elif input.key_down(gs.InputDevice.KeyNumpad3):
-                Demo.pr_Seuil_contraste+=0.01
         elif input.key_down(gs.InputDevice.KeyNumpad4):
+                Demo.pr_Seuil_contraste+=0.01
+        elif input.key_down(gs.InputDevice.KeyNumpad3):
             Demo.pr_Seuil_contraste-=0.01
             if Demo.pr_Seuil_contraste<0.01:
                 Demo.pr_Seuil_contraste=0.01
 
-        elif input.key_down(gs.InputDevice.KeyNumpad5):
-                Demo.pr_Hue+=1
         elif input.key_down(gs.InputDevice.KeyNumpad6):
+                Demo.pr_Hue+=1
+        elif input.key_down(gs.InputDevice.KeyNumpad5):
             Demo.pr_Hue-=1
 
-        elif input.key_down(gs.InputDevice.KeyNumpad7):
-                Demo.pr_Saturation+=0.1
         elif input.key_down(gs.InputDevice.KeyNumpad8):
+                Demo.pr_Saturation+=0.1
+        elif input.key_down(gs.InputDevice.KeyNumpad7):
             Demo.pr_Saturation-=0.1
             if Demo.pr_Saturation<0:
                 Demo.pr_Saturation=0
 
-        elif input.key_down(gs.InputDevice.KeyNumpad9):
-                Demo.pr_Value+=0.1
         elif input.key_down(gs.InputDevice.KeyNumpad0):
+                Demo.pr_Value+=0.1
+        elif input.key_down(gs.InputDevice.KeyNumpad9):
             Demo.pr_Value-=0.1
             if Demo.pr_Value<0:
                 Demo.pr_Value=0

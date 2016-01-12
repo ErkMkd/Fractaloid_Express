@@ -2,6 +2,7 @@
 
 				Fractaloid Express - Eric Kernin - 2015
 				Shader de rendu des montagnes enneigées en terrain marching
+				La couleur d'ambiance est: couleur_zénith * intensite_ambiante
 
 
 */
@@ -25,6 +26,7 @@ in {
 	vec3 couleur_zenith;
 	vec3 couleur_neige;
 	vec3 couleur_eau;
+	float intensite_ambiante;
 	float altitude_eau;
 	vec3  l1_direction;
     vec3  l1_couleur;
@@ -45,7 +47,7 @@ variant {
 
 		source %{
 			v_uv = vUV0;
-			rayObs_dir=vec3(vPosition.x,vPosition.y,0.)*vec3(0.5,ratio_ecran/2.,0.)+vec3(0.,0.,distanceFocale);
+			rayObs_dir=vec3(vPosition.x,vPosition.y,0.)*vec3(1.,ratio_ecran,0.)+vec3(0.,0.,distanceFocale);
 			%out.position% = vec4(vPosition, 1.0);
 		%}
 	}
@@ -61,6 +63,7 @@ variant {
 			float dist,zFrag,zDepth;
 			vec3 l1d,l2d;
 			float brouillard_min=10.;
+			vec3 couleur_ambiante=couleur_zenith*intensite_ambiante;
 			
 			float calcule_zDepth(float d)
 			{
@@ -144,7 +147,7 @@ variant {
 				}
 
 
-				vec3 eclairage    = 	materiau_luminosite + couleur_zenith; //La couleur utilisée pour l'ambiance
+				vec3 eclairage    = 	materiau_luminosite + couleur_ambiante; //La couleur utilisée pour l'ambiance
 
 				eclairage    += 	materiau_diffusion * (l1_couleur *  angle_source1_normale
 													 + l2_couleur *  angle_source2_normale
@@ -226,13 +229,13 @@ variant {
 
 			//Calcul la position et le vecteur directeur du rayon dans l'espace absolu (pour le moment l'observateur est dans le même repère que l'espace)
 				rayDir=normalize(obs_mat_normale*obsDir);
-				l1d=obs_mat_normale*l1_direction;
-				l2d=obs_mat_normale*l2_direction;
+				l1d=-l1_direction;
+				l2d=-l2_direction;
 
 			//Couleur ciel:
 			vec3 couleur_brouillard_h=mix(couleur_zenith,couleur_horizon,pow(min(1.,1.-rayDir.y),3.));
 			float angle_soleil=pow(max(dot(l1d,rayDir),0.),16.);
-			couleur_brouillard_h=mix(couleur_brouillard_h,vec3(1.,0.,0.),angle_soleil);
+			couleur_brouillard_h=mix(couleur_brouillard_h,l1_couleur,angle_soleil);
 			vec3 couleur=couleur_brouillard_h;
 
 			//Marche:
@@ -240,7 +243,7 @@ variant {
 				float alt,alt_prec,dist_prec;
 				//ray_position=obs_pos+rayDir*zFrustum.x;
 				float pas=.1;
-				/*
+				
 				for(dist=zFrustum.x;dist<zFrustum.y;dist+=pas)
 				{
 
@@ -248,8 +251,8 @@ variant {
 					if(rayDir.y>0. && ray_position.y>amplitude_terrain) break;
 					if(rayDir.y>0.7) break;
 
-					alt=max(renvoie_altitude(ray_position.xz),altitude_eau);
-					//alt=renvoie_altitude_details(ray_position.xz);
+					//alt=max(renvoie_altitude(ray_position.xz),altitude_eau);
+					alt=renvoie_altitude_details(ray_position.xz);
 					if (alt>ray_position.y)
 					{
 						dist=renvoie_dist_precise(dist_prec,dist,alt_prec,alt);
@@ -273,9 +276,9 @@ variant {
 					pas*=facteur_precision_distance;
 					dist_prec=dist;
 					alt_prec=alt;
-				}*/
+				}
 				
-				dist=zFrustum.y;
+				//dist=zFrustum.y;
 
 				float facteur_brouillard=clamp((dist-brouillard_min)/(zFrustum.y-brouillard_min),0.,1.);
 

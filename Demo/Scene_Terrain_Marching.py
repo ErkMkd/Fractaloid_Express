@@ -23,6 +23,9 @@ from Demo.SceneBase import Scene_base as Scene_base
 
 class Scene_Terrain_Marching(Scene_base):
 
+    EDIT_TERRAIN=3
+    NUM_PAGES_EDIT=3
+
     lumiere_ciel=None
     lumiere_soleil=None
 
@@ -55,9 +58,10 @@ class Scene_Terrain_Marching(Scene_base):
     facteur_echelle_terrain_l1 = None
     facteur_echelle_terrain_l2 = None
     facteur_echelle_terrain_l3 = None
-    amplitude_l1=6000
-    amplitude_l2=90
-    amplitude_l3=1.5
+    amplitude_l1=300
+    amplitude_l2=20
+    amplitude_l3=3.5
+    terrain_intensite_ambiante=0.2
 
     facteur_precision_distance=1.01
 
@@ -104,7 +108,7 @@ class Scene_Terrain_Marching(Scene_base):
         cls.environnement.SetBackgroundColor(gs.Color(0.,0.,0.,0))
         cls.environnement.SetFogColor(cls.couleur_zenith)
         cls.environnement.SetFogNear(10)
-        cls.environnement.SetFogFar(50)
+        cls.environnement.SetFogFar(6000)
         cls.environnement.SetAmbientIntensity(.1)
         cls.environnement.SetAmbientColor(cls.couleur_ambiante)
 
@@ -117,6 +121,7 @@ class Scene_Terrain_Marching(Scene_base):
         cls.lumiere_ciel=cls.scene3d.GetNode("clair obscur")
         cls.lumiere_soleil=cls.scene3d.GetNode("soleil")
         cls.lumiere_ciel.GetLight().SetDiffuseColor(gs.Color(77./255.,158./255.,255./255.,1.))
+        cls.lumiere_ciel.GetLight().SetDiffuseIntensity(0.2)
         cls.lumiere_soleil.GetLight().SetDiffuseColor(gs.Color(255./255.,250./255.,223./255.,1.))
 
         cls.lumiere_soleil.GetLight().SetShadow(gs.Light.Shadow_Map)    #Active les ombres portées
@@ -171,8 +176,8 @@ class Scene_Terrain_Marching(Scene_base):
         scene.update_scene(cls.scene3d,1/60)
 
         #------------- Filtres:
-        Demo.pr_alpha_rendu=0.75
-        Demo.pr_alpha_aura=0.5
+        Demo.pr_alpha_rendu=1.
+        Demo.pr_alpha_aura=0.
         Demo.pr_taille_aura=50
         Demo.pr_aura_contraste=2
         Demo.pr_aura_seuil_contraste=0.6
@@ -187,9 +192,10 @@ class Scene_Terrain_Marching(Scene_base):
         cls.facteur_echelle_terrain_l2 = gs.Vector2(1000,1000)
         cls.facteur_echelle_terrain_l3 = gs.Vector2(90,90)
 
-        cls.amplitude_l1=6000
-        cls.amplitude_l2=90
-        cls.amplitude_l3=1.5
+        cls.amplitude_l1=1000
+        cls.amplitude_l2=37
+        cls.amplitude_l3=4
+        cls.terrain_intensite_ambiante=0.2
 
         cls.facteur_precision_distance=1.01
         cls.couleur_neige=gs.Color(0.91,0.91,1)
@@ -202,7 +208,7 @@ class Scene_Terrain_Marching(Scene_base):
     @classmethod
     def raz_camera(cls):
         #cls.camera.GetTransform().SetPosition(cls.camera_start_pos_mem)
-        cls.fps=camera.fps_controller(cls.camera_start_pos_mem.x,cls.camera_start_pos_mem.y,cls.camera_start_pos_mem.z)
+        cls.fps=camera.fps_controller(cls.camera_start_pos_mem.x,cls.camera_start_pos_mem.y+300,cls.camera_start_pos_mem.z)
 
     @classmethod
     def raz_demo(cls):
@@ -280,34 +286,35 @@ class Scene_Terrain_Marching(Scene_base):
         Demo.rendu.SetShaderTexture("texture_terrain2", cls.texture_terrain2)
         Demo.rendu.SetShaderTexture("texture_terrain3", cls.texture_terrain3)
         Demo.rendu.SetShaderFloat("ratio_ecran",window_size.y/window_size.x)
-        Demo.rendu.SetShaderFloat("distanceFocale",cls.camera.GetCamera().GetZoomFactor()/2.)
+        Demo.rendu.SetShaderFloat("distanceFocale",Demo.calcul_distance_focale(cls.camera)) #cls.camera.GetCamera().GetZoomFactor()/2.)
         cam=cls.camera.GetTransform()
         camPos=cam.GetPosition()
         Demo.rendu.SetShaderFloat3("obs_pos",camPos.x,camPos.y,camPos.z)
-        #matr=cam.GetWorld().GetRotationMatrix()
-        #matr.Inverse()
         Demo.rendu.SetShaderMatrix3("obs_mat_normale",cam.GetWorld().GetRotationMatrix())
-        Demo.rendu.SetShaderFloat2("facteur_echelle_terrain",cls.facteur_echelle_terrain_l1.x,cls.facteur_echelle_terrain_l1.y)
-        Demo.rendu.SetShaderFloat2("facteur_echelle_terrain2",cls.facteur_echelle_terrain_l2.x,cls.facteur_echelle_terrain_l2.y)
-        Demo.rendu.SetShaderFloat2("facteur_echelle_terrain3",cls.facteur_echelle_terrain_l3.x,cls.facteur_echelle_terrain_l3.y)
+        Demo.rendu.SetShaderFloat2("facteur_echelle_terrain",1./cls.facteur_echelle_terrain_l1.x,1./cls.facteur_echelle_terrain_l1.y)
+        Demo.rendu.SetShaderFloat2("facteur_echelle_terrain2",1./cls.facteur_echelle_terrain_l2.x,1./cls.facteur_echelle_terrain_l2.y)
+        Demo.rendu.SetShaderFloat2("facteur_echelle_terrain3",1./cls.facteur_echelle_terrain_l3.x,1./cls.facteur_echelle_terrain_l3.y)
         Demo.rendu.SetShaderFloat("amplitude_terrain",cls.amplitude_l1)
         Demo.rendu.SetShaderFloat("amplitude_terrain2",cls.amplitude_l2)
         Demo.rendu.SetShaderFloat("amplitude_terrain3",cls.amplitude_l3)
         Demo.rendu.SetShaderFloat("facteur_precision_distance",cls.facteur_precision_distance)
         Demo.rendu.SetShaderFloat("altitude_eau",cls.altitude_eau)
+        Demo.rendu.SetShaderFloat("intensite_ambiante",cls.terrain_intensite_ambiante)
         Demo.rendu.SetShaderFloat3("couleur_zenith",cls.couleur_zenith.r,cls.couleur_zenith.g,cls.couleur_zenith.b)
         Demo.rendu.SetShaderFloat3("couleur_horizon",cls.couleur_horizon.r,cls.couleur_horizon.g,cls.couleur_horizon.b)
         Demo.rendu.SetShaderFloat3("couleur_neige",cls.couleur_neige.r,cls.couleur_neige.g,cls.couleur_neige.b)
         Demo.rendu.SetShaderFloat3("couleur_eau",cls.couleur_eau.r,cls.couleur_eau.g,cls.couleur_eau.b)
 
         l_dir=cls.lumiere_soleil.GetTransform().GetWorld().GetRotationMatrix().GetZ()
+        Demo.drapeau_erreur=True
+        Demo.message_erreur={"x:"+str(l_dir.x),"y:"+str(l_dir.y),"z:"+str(l_dir.z)}
         Demo.rendu.SetShaderFloat3("l1_direction",l_dir.x,l_dir.y,l_dir.z)
         l_couleur=cls.lumiere_soleil.GetLight().GetDiffuseColor()
         Demo.rendu.SetShaderFloat3("l1_couleur",l_couleur.r,l_couleur.g,l_couleur.b)
 
         l_dir=cls.lumiere_ciel.GetTransform().GetWorld().GetRotationMatrix().GetZ()
         Demo.rendu.SetShaderFloat3("l2_direction",l_dir.x,l_dir.y,l_dir.z)
-        l_couleur=cls.lumiere_ciel.GetLight().GetDiffuseColor()
+        l_couleur=cls.lumiere_ciel.GetLight().GetDiffuseColor()*cls.lumiere_ciel.GetLight().GetDiffuseIntensity()
         Demo.rendu.SetShaderFloat3("l2_couleur",l_couleur.r,l_couleur.g,l_couleur.b)
 
         Demo.rendu.SetShaderFloat2("zFrustum",cls.camera.GetCamera().GetZNear(),cls.camera.GetCamera().GetZFar())
@@ -351,6 +358,12 @@ class Scene_Terrain_Marching(Scene_base):
 
     @classmethod
     def edition(cls):
+        if cls.edit_id==Scene_base.EDIT_SCENE:cls.edition_scene3d()
+        elif cls.edit_id==Scene_base.EDIT_FILTRES:cls.edition_filtres()
+        elif cls.edit_id==cls.EDIT_TERRAIN:cls.edition_terrain()
+
+    @classmethod
+    def edition_scene3d(cls):
         noeuds=cls.scene3d.GetNodes()
         if input.key_press(gs.InputDevice.KeySpace):
             if input.key_down(gs.InputDevice.KeyLShift):
@@ -392,3 +405,102 @@ class Scene_Terrain_Marching(Scene_base):
         cls.cube_l_ciel.GetTransform().SetRotation(cls.lumiere_ciel.GetTransform().GetRotation())
         cls.cube_l_soleil.GetTransform().SetPosition(cls.lumiere_soleil.GetTransform().GetPosition())
         cls.cube_l_soleil.GetTransform().SetRotation(cls.lumiere_soleil.GetTransform().GetRotation())
+
+    @classmethod
+    def edition_terrain(cls):
+
+        if input.key_down(gs.InputDevice.KeyA):
+            cls.facteur_echelle_terrain_l1.x+=100
+        elif input.key_down(gs.InputDevice.KeyQ):
+            cls.facteur_echelle_terrain_l1.x-=100
+            if cls.facteur_echelle_terrain_l1.x<100:
+                cls.facteur_echelle_terrain_l1.x=100
+
+        if input.key_down(gs.InputDevice.KeyZ):
+            cls.facteur_echelle_terrain_l1.y+=100
+        elif input.key_down(gs.InputDevice.KeyS):
+            cls.facteur_echelle_terrain_l1.y-=100
+            if cls.facteur_echelle_terrain_l1.y<100:
+                cls.facteur_echelle_terrain_l1.y=100
+
+        if input.key_down(gs.InputDevice.KeyE):
+            cls.facteur_echelle_terrain_l2.x+=100
+        elif input.key_down(gs.InputDevice.KeyD):
+            cls.facteur_echelle_terrain_l2.x-=100
+            if cls.facteur_echelle_terrain_l2.x<100:
+                cls.facteur_echelle_terrain_l2.x=100
+
+        if input.key_down(gs.InputDevice.KeyR):
+            cls.facteur_echelle_terrain_l2.y+=100
+        elif input.key_down(gs.InputDevice.KeyF):
+            cls.facteur_echelle_terrain_l2.y-=100
+            if cls.facteur_echelle_terrain_l2.y<100:
+                cls.facteur_echelle_terrain_l2.y=100
+
+        if input.key_down(gs.InputDevice.KeyT):
+            cls.facteur_echelle_terrain_l3.x+=100
+        elif input.key_down(gs.InputDevice.KeyG):
+            cls.facteur_echelle_terrain_l3.x-=100
+            if cls.facteur_echelle_terrain_l3.x<100:
+                cls.facteur_echelle_terrain_l3.x=100
+
+        if input.key_down(gs.InputDevice.KeyY):
+            cls.facteur_echelle_terrain_l3.y+=100
+        elif input.key_down(gs.InputDevice.KeyH):
+            cls.facteur_echelle_terrain_l3.y-=100
+            if cls.facteur_echelle_terrain_l3.y<100:
+                cls.facteur_echelle_terrain_l3.y=100
+
+
+
+        elif input.key_down(gs.InputDevice.KeyU):
+                cls.amplitude_l1+=100
+        elif input.key_down(gs.InputDevice.KeyJ):
+            cls.amplitude_l1-=100
+            if cls.amplitude_l1<100:
+                cls.amplitude_l1=100
+
+        elif input.key_down(gs.InputDevice.KeyI):
+                cls.amplitude_l2+=1
+        elif input.key_down(gs.InputDevice.KeyK):
+            cls.amplitude_l2-=1
+            if cls.amplitude_l2<1:
+                cls.amplitude_l2=1
+
+        elif input.key_down(gs.InputDevice.KeyO):
+                cls.amplitude_l3+=0.05
+        elif input.key_down(gs.InputDevice.KeyL):
+            cls.amplitude_l3-=0.05
+            if cls.amplitude_l3<0.05:
+                cls.amplitude_l3=0.05
+
+        elif input.key_down(gs.InputDevice.KeyP):
+                cls.facteur_precision_distance+=0.001
+        elif input.key_down(gs.InputDevice.KeyM):
+            cls.facteur_precision_distance-=0.001
+            if cls.facteur_precision_distance<1.001:
+                cls.facteur_precision_distance=1.001
+
+        elif input.key_down(gs.InputDevice.KeyNumpad2):
+                cls.altitude_eau+=1
+        elif input.key_down(gs.InputDevice.KeyNumpad1):
+            cls.altitude_eau-=1
+
+
+        window_size = Demo.rendu.GetDefaultOutputWindow().GetSize()
+        xPos=10
+        yPos=window_size.y-30
+
+        c=gs.Color(1.,0,0,1.)
+        render.text2d(xPos,yPos,"A/Q facteur_echelle_terrain_l1.x: "+str(cls.facteur_echelle_terrain_l1.x),16, c)
+        render.text2d(xPos,yPos-15,"Z/S facteur_echelle_terrain_l1.y: "+str(cls.facteur_echelle_terrain_l1.y),16, c)
+        render.text2d(xPos,yPos-15*2,"E/D facteur_echelle_terrain_l2.x: "+str(cls.facteur_echelle_terrain_l2.x),16, c)
+        render.text2d(xPos,yPos-15*3,"R/F facteur_echelle_terrain_l2.y: "+str(cls.facteur_echelle_terrain_l2.y),16, c)
+        render.text2d(xPos,yPos-15*4,"T/G facteur_echelle_terrain_l3.x: "+str(cls.facteur_echelle_terrain_l3.x),16, c)
+        render.text2d(xPos,yPos-15*5,"Y/H facteur_echelle_terrain_l3.y: "+str(cls.facteur_echelle_terrain_l3.y),16, c)
+        render.text2d(xPos,yPos-15*6,"U/J amplitude_l1: "+str(cls.amplitude_l1),16, c)
+        render.text2d(xPos,yPos-15*7,"I/K amplitude_l2: "+str(cls.amplitude_l2),16, c)
+        render.text2d(xPos,yPos-15*8,"O/L amplitude_l3: "+str(cls.amplitude_l3),16, c)
+        render.text2d(xPos,yPos-15*9,"P/M facteur_precision_distance: "+str(cls.facteur_precision_distance),16, c)
+        render.text2d(xPos,yPos-15*10,"1/2 altitude_eau: "+str(cls.altitude_eau),16, c)
+

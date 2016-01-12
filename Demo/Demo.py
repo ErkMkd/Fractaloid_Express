@@ -130,7 +130,7 @@ class Demo:
         y=450
         for message in cls.message_erreur:
             render.text2d(400,y,message,16, gs.Color.Red)
-            y-=20
+            y+=20
 
     @classmethod
     def calcul_distance_focale(cls,camera):

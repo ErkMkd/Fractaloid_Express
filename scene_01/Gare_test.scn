@@ -1442,9 +1442,9 @@
 				"Components": {
 					"gs::core::Transform": {
 						"Scale": {
-							"x": 1.0,
+							"x": 0.2635,
 							"y": 1.0,
-							"z": 1.0
+							"z": 0.34840000000000007
 						}
 					},
 					"gs::core::Object": {
