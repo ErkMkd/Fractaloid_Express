@@ -11,6 +11,7 @@ in {
 	tex2D texture_terrain [wrap-u: repeat, wrap-v: repeat];
 	tex2D texture_terrain2 [wrap-u: repeat, wrap-v: repeat];
 	tex2D texture_terrain3 [wrap-u: repeat, wrap-v: repeat];
+	vec3 offset_terrain;
 	float ratio_ecran;
 	float distanceFocale;
 	vec3 obs_pos;
@@ -28,11 +29,13 @@ in {
 	vec3 couleur_eau;
 	float intensite_ambiante;
 	float altitude_eau;
+	
 	vec3  l1_direction;
     vec3  l1_couleur;
     vec3  l2_direction;
     vec3  l2_couleur;
 	vec2 zFrustum;
+	
 }
 
 variant {
@@ -76,23 +79,25 @@ variant {
 			
 			float renvoie_altitude(vec2 p)
 			{
-				float a=texture2D(texture_terrain,p*facteur_echelle_terrain).r;
+				vec2 po=p+offset_terrain.xz;
+				float a=texture2D(texture_terrain,po*facteur_echelle_terrain).r;
 			   //return a*amplitude_terrain;
 				//float b=texture(texture_terrain2,p*facteur_echelle_terrain2);
 				//float c=texture(texture_terrain2,p*facteur_echelle_terrain3);
 
 				//return (pow(a,5.)+pow(b,6.)+c)*(amplitude_terrain);
-				return pow(a,5.)*amplitude_terrain;
+				return pow(a,5.)*amplitude_terrain+offset_terrain.y;
 			}
 			
 			float renvoie_altitude_details(vec2 p)
 			{
-				float a=texture2D(texture_terrain,p*facteur_echelle_terrain).r;
+				vec2 po=p+offset_terrain.xz;
+				float a=texture2D(texture_terrain,po*facteur_echelle_terrain).r;
 			   //return a*amplitude_terrain;
-				float b=texture2D(texture_terrain2,p*facteur_echelle_terrain2).r;//12,753
-				float c=texture2D(texture_terrain3,p*facteur_echelle_terrain3).r;
+				float b=texture2D(texture_terrain2,po*facteur_echelle_terrain2).r;//12,753
+				float c=texture2D(texture_terrain3,po*facteur_echelle_terrain3).r;
 
-				return (pow(a,5.)*amplitude_terrain+pow(b,4.)*amplitude_terrain2+c*amplitude_terrain3);
+				return (pow(a,5.)*amplitude_terrain+pow(b,4.)*amplitude_terrain2+c*amplitude_terrain3)+offset_terrain.y;
 				//return (a+b+c)*amplitude_terrain;
 			}
 			
